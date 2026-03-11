@@ -1,8 +1,6 @@
 # TraderSpy MCP — Crypto Smart Money & AI Signals
 
-[![Install MCP Server](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/install-mcp?name=traderspy&config=eyJ0cmFkZXJzcHkiOnsidHlwZSI6Imh0dHAiLCJ1cmwiOiJodHRwczovL21jcC50cmFkZXJzcHkuYXBwL21jcCJ9fQ%3D%3D)
-
-Connect your AI coding assistant to [TraderSpy](https://traderspy.app)'s real-time crypto futures intelligence. Track whale positions, get AI trading signals, and monitor elite traders — all from your editor.
+Connect
 
 ## Features
 
