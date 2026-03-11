@@ -1,0 +1,13 @@
+{
+  "name": "traderspy-mcp",
+  "description": "TraderSpy — Smart money tracking, AI trading signals, and elite trader leaderboard for crypto futures. Track whale positions across Binance, Hyperliquid, Bybit, and OKX.",
+  "version": "1.0.0",
+  "author": {
+    "name": "TraderSpy",
+    "email": "support@traderspy.app"
+  },
+  "homepage": "https://traderspy.app",
+  "repository": "https://github.com/target1m/traderspy-mcp",
+  "license": "MIT",
+  "keywords": ["crypto", "trading", "smart-money", "signals", "binance", "hyperliquid", "bybit", "okx"]
+}
