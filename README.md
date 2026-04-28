@@ -9,6 +9,7 @@ Connect
 - **Elite Leaderboard** — Top traders ranked by SmartScore (weighted: PnL, win rate, ROI, consistency)
 - **Live Positions** — See what top traders are trading right now
 - **Market Stats** — Aggregate market statistics across tracked exchanges
+- **Market Data** — Real-time prices, OHLCV candles, and 13 technical indicators (RSI, MACD, EMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, SMA)
 
 ## Quick Start
 
@@ -79,11 +80,18 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 
 ## Available Tools
 
+### Signals
+
 | Tool | Description |
 |------|-------------|
 | `get_signals` | Recent AI trading signals with filtering |
 | `get_signal_details` | Full signal details with AI review |
 | `get_signal_stats` | Signal performance statistics |
+
+### Smart Money
+
+| Tool | Description |
+|------|-------------|
 | `get_top_traders` | Ranked traders by exchange and metrics |
 | `get_elite_leaderboard` | Top 10 by SmartScore |
 | `get_trader_profile` | Trader profile with metrics and positions |
@@ -91,6 +99,15 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 | `get_positions` | Live and historical positions |
 | `get_market_stats` | Aggregate market statistics |
 | `get_exchanges` | List of tracked exchanges |
+
+### Market Data
+
+| Tool | Description |
+|------|-------------|
+| `get_price` | Real-time price, 24h high/low, volume, and change% for one or more symbols |
+| `get_candles` | OHLCV candles (1m, 5m, 15m, 1h, 4h, 1d) for charting and analysis |
+| `get_technical_indicators` | Compute RSI, MACD, EMA, SMA, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R |
+| `get_tracked_symbols` | List all crypto futures symbols with real-time data available |
 
 ## Example Prompts
 
@@ -101,6 +118,10 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 - "Show me BTC positions from top traders"
 - "Who are the most profitable traders on Hyperliquid this week?"
 - "What's the overall market sentiment — are more traders long or short on BTC?"
+- "What's the current price of BTC and ETH?"
+- "Show me the last 100 1h candles for SOLUSDT"
+- "Compute RSI and MACD for BTCUSDT on the 4h timeframe"
+- "Which symbols does TraderSpy track?"
 
 ## Links
 
