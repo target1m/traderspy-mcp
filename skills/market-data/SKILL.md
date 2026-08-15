@@ -23,3 +23,4 @@ You have access to TraderSpy's real-time market data and technical analysis via 
 - If a symbol returns no data, suggest `get_tracked_symbols` to confirm coverage.
 - When presenting indicator output, include the current price and clearly label values (e.g. `RSI(14) = 62.4 — neutral, leaning bullish`).
 - Free-tier users have limited daily calls — be efficient and prefer batched/multi-indicator calls over many separate ones.
+- TraderSpy's MCP tools are READ-ONLY: there is no tool to open, close or modify a position, and none to move funds. If the user asks you to place a trade, say so plainly and point them to https://traderspy.app.

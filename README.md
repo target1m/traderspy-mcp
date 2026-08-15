@@ -1,6 +1,10 @@
 # TraderSpy MCP — Crypto Smart Money & AI Signals
 
-Connect
+Connect Claude, Claude Code, ChatGPT or any MCP client to TraderSpy's live crypto futures data:
+AI signals, whale positioning, market data and your own account — with one URL.
+
+**Every tool is read-only.** The connector cannot place, close or modify an order, and it has no
+withdrawal or transfer tool. It answers questions; you place your trades yourself.
 
 ## Features
 
@@ -10,6 +14,8 @@ Connect
 - **Live Positions** — See what top traders are trading right now
 - **Market Stats** — Aggregate market statistics across tracked exchanges
 - **Market Data** — Real-time prices, OHLCV candles, and 13 technical indicators (RSI, MACD, EMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, SMA)
+- **Your Own Account** — Read your Hyperliquid balance, open positions and unrealized PnL (personal key required)
+- **Interactive Views** — In hosts that support MCP Apps, `get_signals` and `get_signal_details` render signal cards and charts instead of plain text
 
 ## Quick Start
 
@@ -26,7 +32,7 @@ claude mcp add --transport http traderspy https://mcp.traderspy.app/mcp
 Inside Claude Code, run:
 ```
 /plugin marketplace add target1m/traderspy-mcp
-/plugin install traderspy-mcp@traderspy
+/plugin install traderspy@traderspy-mcp
 ```
 
 ### ChatGPT
@@ -69,11 +75,19 @@ Add the following to your MCP configuration:
 
 ## Authentication
 
-When you first use a tool, you'll be redirected to sign in with your TraderSpy account via OAuth. No API keys needed — just log in and start using.
+Two ways to connect, both tied to your TraderSpy account:
+
+- **Personal URL (recommended)** — generate it at [traderspy.app/mcp](https://traderspy.app/mcp) or in
+  Settings. The key is embedded in the URL (`https://mcp.traderspy.app/mcp?token=mcp_...`), so hosts
+  that ask for authentication can be left on "None". Shown once, revocable any time.
+- **OAuth** — supported for clients that drive the OAuth flow themselves.
+
+Treat the personal URL like a password: it grants read access to your account data. If it leaks,
+revoke it on the same page and generate a new one.
 
 | Plan | Daily Limit | Data |
 |------|------------|------|
-| Free | 3 calls/day | Real-time |
+| Free | 5 calls/day | Real-time |
 | Pro | 100 calls/day | Real-time |
 
 Don't have an account? [Sign up for free](https://traderspy.app) to get started.
@@ -109,6 +123,12 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 | `get_technical_indicators` | Compute RSI, MACD, EMA, SMA, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R |
 | `get_tracked_symbols` | List all crypto futures symbols with real-time data available |
 
+### Your Account
+
+| Tool | Description |
+|------|-------------|
+| `get_my_account` | Your Hyperliquid balance, open positions and unrealized PnL (read-only, personal key required) |
+
 ## Example Prompts
 
 - "What are the top crypto signals right now?"
@@ -122,6 +142,7 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 - "Show me the last 100 1h candles for SOLUSDT"
 - "Compute RSI and MACD for BTCUSDT on the 4h timeframe"
 - "Which symbols does TraderSpy track?"
+- "Show my TraderSpy account — balance, open positions and PnL"
 
 ## Links
 

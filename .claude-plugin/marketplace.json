@@ -1,19 +1,18 @@
 {
   "name": "traderspy-mcp",
-  "id": "traderspy-mcp",
   "owner": {
     "name": "target1m"
   },
   "metadata": {
-    "description": "TraderSpy MCP — Smart money tracking, AI trading signals for crypto futures",
-    "version": "1.1.0"
+    "description": "TraderSpy MCP — Read-only smart money tracking and AI trading signals for crypto futures",
+    "version": "1.2.0"
   },
   "plugins": [
     {
       "name": "traderspy",
       "source": "./",
-      "description": "TraderSpy — Smart money tracking, AI trading signals, and elite trader leaderboard for crypto futures. Track whale positions across Binance, Hyperliquid, Bybit, and OKX.",
-      "version": "1.1.0",
+      "description": "TraderSpy — Read-only smart money tracking, AI trading signals, and elite trader leaderboard for crypto futures. Track whale positions across Binance, Hyperliquid, Bybit, and OKX. No order or withdrawal tools.",
+      "version": "1.2.0",
       "author": {
         "name": "target1m"
       },
