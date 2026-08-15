@@ -47,7 +47,7 @@ Inside Claude Code, run:
 
 ### Cursor
 
-Click the badge above or manually add to your Cursor MCP config (`.cursor/mcp.json`):
+Add TraderSpy to your Cursor MCP config (`.cursor/mcp.json`):
 
 ```json
 {
@@ -148,4 +148,5 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 
 - [TraderSpy](https://traderspy.app) — Main platform
 - [GitHub](https://github.com/target1m/traderspy-mcp) — Plugin source code
+- [Privacy Policy](https://traderspy.app/privacy-policy) — How your data is handled
 - [Support](mailto:support@traderspy.app) — Contact us
