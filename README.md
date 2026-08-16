@@ -62,6 +62,30 @@ Add TraderSpy to your Cursor MCP config (`.cursor/mcp.json`):
 }
 ```
 
+### Cline
+
+Add TraderSpy to `cline_mcp_settings.json`:
+
+```json
+{
+  "mcpServers": {
+    "traderspy": {
+      "type": "streamableHttp",
+      "url": "https://mcp.traderspy.app/mcp",
+      "headers": {
+        "Authorization": "Bearer mcp_YOUR_KEY"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+`type` must be exactly `streamableHttp` — `streamable-http` or a missing `type` falls back to SSE
+and the server answers 405. Full walkthrough, including how to get the key and how to verify the
+connection: [llms-install.md](llms-install.md).
+
 ### Windsurf / Other MCP Clients
 
 Add the following to your MCP configuration:
