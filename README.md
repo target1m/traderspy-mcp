@@ -1,5 +1,7 @@
 # TraderSpy MCP — Crypto Smart Money & AI Signals
 
+[![smithery badge](https://smithery.ai/badge/traderspy/traderspy)](https://smithery.ai/servers/traderspy/traderspy)
+
 Connect Claude, Claude Code, ChatGPT or any MCP client to TraderSpy's live crypto futures data:
 AI signals, whale positioning, market data and your own account — with one URL.
 
