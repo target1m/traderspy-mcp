@@ -1,6 +1,7 @@
 # TraderSpy MCP — Crypto Smart Money & AI Signals
 
 [![smithery badge](https://smithery.ai/badge/traderspy/traderspy)](https://smithery.ai/servers/traderspy/traderspy)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/target1m/traderspy-mcp/blob/master/LICENSE)
 
 Connect Claude, Claude Code, ChatGPT or any MCP client to TraderSpy's live crypto futures data:
 AI signals, whale positioning, market data and your own account — with one URL.
@@ -176,3 +177,7 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 - [GitHub](https://github.com/target1m/traderspy-mcp) — Plugin source code
 - [Privacy Policy](https://traderspy.app/privacy-policy) — How your data is handled
 - [Support](mailto:support@traderspy.app) — Contact us
+
+## License
+
+[MIT](LICENSE) © TraderSpy
