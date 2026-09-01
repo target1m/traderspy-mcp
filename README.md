@@ -3,7 +3,7 @@
 [![smithery badge](https://smithery.ai/badge/traderspy/traderspy)](https://smithery.ai/servers/traderspy/traderspy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/target1m/traderspy-mcp/blob/master/LICENSE)
 
-Connect Claude, Claude Code, ChatGPT or any MCP client to TraderSpy's live crypto futures data:
+Connect Claude, Claude Code, ChatGPT, Grok or any MCP client to TraderSpy's live crypto futures data:
 AI signals, whale positioning, market data and your own account — with one URL.
 
 **Every tool is read-only.** The connector cannot place, close or modify an order, and it has no
@@ -47,6 +47,24 @@ Inside Claude Code, run:
    https://mcp.traderspy.app/mcp
    ```
 4. Complete the OAuth login flow to connect your TraderSpy account
+
+### Grok (xAI)
+
+1. Open [grok.com/connectors](https://grok.com/connectors) → **New Connector** → **Custom**
+2. Paste your personal connector URL (the key is embedded, so no extra authentication is needed):
+   ```
+   https://mcp.traderspy.app/mcp?token=mcp_YOUR_KEY
+   ```
+3. Grok reads the tool list and TraderSpy is available in your next chat
+
+From the terminal, Grok Build takes the same URL:
+
+```bash
+grok mcp add --transport http traderspy "https://mcp.traderspy.app/mcp?token=mcp_YOUR_KEY"
+```
+
+The same endpoint also works as a remote MCP tool in the xAI API. Grok supports Streamable HTTP and
+SSE only — both of which this server speaks.
 
 ### Cursor
 
