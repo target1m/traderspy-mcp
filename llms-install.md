@@ -83,7 +83,7 @@ Reload the MCP servers, then confirm two things:
 | `get_price` | Live prices, up to 20 symbols per call |
 | `get_candles` | OHLCV candles |
 | `get_tracked_symbols` | Every tracked pair |
-| `get_technical_indicators` | 13 indicators (RSI, MACD, EMA, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, SMA) |
+| `get_technical_indicators` | 19 indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance); up to 3 timeframes per call, custom periods, previous-bar direction, summary |
 | `get_my_account` | The key owner's own Hyperliquid balance, positions and unrealised PnL |
 
 Every tool declares an output schema, so structured results are typed.
