@@ -16,7 +16,7 @@ withdrawal or transfer tool. It answers questions; you place your trades yoursel
 - **Elite Leaderboard** — Top traders ranked by SmartScore (weighted: PnL, win rate, ROI, consistency)
 - **Live Positions** — See what top traders are trading right now
 - **Market Stats** — Aggregate market statistics across tracked exchanges
-- **Market Data** — Real-time prices, OHLCV candles, and 19 technical indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance) with previous-bar direction, configurable periods, up to 3 timeframes per call and a plain-language summary
+- **Market Data** — Real-time prices, OHLCV candles, and 19 technical indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance) with previous-bar direction, configurable periods, up to 3 timeframes per call and a plain-language summary; funding rate, open interest and long/short positioning for Binance perpetuals
 - **Your Own Account** — Read your Hyperliquid balance, open positions and unrealized PnL (personal key required)
 - **Interactive Views** — In hosts that support MCP Apps, `get_signals` and `get_signal_details` render signal cards and charts instead of plain text
 
@@ -165,6 +165,7 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 |------|-------------|
 | `get_price` | Real-time price, 24h high/low, volume, and change% for one or more symbols |
 | `get_candles` | OHLCV candles (1m, 5m, 15m, 1h, 4h, 1d) for charting and analysis |
+| `get_derivatives` | Funding rate (current, 24h/3d avg, annualized), open interest (24h/4h change, OI×price regime), top-trader + all-account long/short ratios, taker flow — up to 5 Binance perpetuals |
 | `get_technical_indicators` | 19 indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance) — multi-timeframe (`intervals`, up to 3), custom `periods`, `history` series, per-timeframe `summary` + `confluence` |
 | `get_tracked_symbols` | List all crypto futures symbols with real-time data available |
 

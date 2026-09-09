@@ -12,7 +12,7 @@ Docker image, no local process. You point the client at one HTTPS endpoint.
 https://mcp.traderspy.app/mcp
 ```
 
-Transport: Streamable HTTP. All 15 tools are read-only — the connector cannot place, close or modify
+Transport: Streamable HTTP. All 16 tools are read-only — the connector cannot place, close or modify
 an order, and no withdrawal or transfer tool exists.
 
 ## Step 1 — get the user's API key
@@ -60,7 +60,7 @@ https://mcp.traderspy.app/mcp?token=mcp_REPLACE_ME
 
 Reload the MCP servers, then confirm two things:
 
-1. `traderspy` lists **15 tools**. `get_price` is a good smoke test:
+1. `traderspy` lists **16 tools**. `get_price` is a good smoke test:
    `get_price` with `{"symbols": ["BTCUSDT"]}` should return a live price.
 2. If the tool list appears but every call returns `Authentication required` (JSON-RPC `-32001`), the
    key is missing or wrong — `initialize` and `tools/list` work anonymously by design, tool calls do
@@ -83,6 +83,7 @@ Reload the MCP servers, then confirm two things:
 | `get_price` | Live prices, up to 20 symbols per call |
 | `get_candles` | OHLCV candles |
 | `get_tracked_symbols` | Every tracked pair |
+| `get_derivatives` | Funding rate, open interest (24h/4h change + OI×price regime), top-trader/all-account long-short ratios, taker flow — up to 5 Binance perpetuals |
 | `get_technical_indicators` | 19 indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance); up to 3 timeframes per call, custom periods, previous-bar direction, summary |
 | `get_my_account` | The key owner's own Hyperliquid balance, positions and unrealised PnL |
 
