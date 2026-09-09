@@ -1,7 +1,7 @@
 {
   "name": "traderspy-mcp",
   "description": "TraderSpy — Read-only smart money tracking, AI trading signals, and elite trader leaderboard for crypto futures. Track whale positions across Binance, Hyperliquid, Bybit, and OKX. No order or withdrawal tools.",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": {
     "name": "TraderSpy",
     "email": "support@traderspy.app"

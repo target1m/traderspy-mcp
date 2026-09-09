@@ -167,6 +167,8 @@ Don't have an account? [Sign up for free](https://traderspy.app) to get started.
 | `get_candles` | OHLCV candles (1m, 5m, 15m, 1h, 4h, 1d) for charting and analysis |
 | `get_derivatives` | Funding rate (current, 24h/3d avg, annualized), open interest (24h/4h change, OI×price regime), top-trader + all-account long/short ratios, taker flow — up to 5 Binance perpetuals |
 | `get_technical_indicators` | 19 indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance) — multi-timeframe (`intervals`, up to 3), custom `periods`, `history` series, per-timeframe `summary` + `confluence` |
+| `screen_symbols` | Scan the most-traded pairs (≤ 100, ranked by 24h volume) or an explicit list for up to 3 AND-ed conditions — `{metric, op, value, period?, period2?}` over `rsi`, `stochastic`, `cci`, `mfi`, `williamsR`, `adx`, `roc`, `macdHistogram`, `atrPct`, `volumeRatio`, `bbPercentB`, `bbWidthPct`, `priceVsEma`, `emaSpread`, `supertrend`, `changePct`, `price` with `lt` / `gt` / `crossAbove` / `crossBelow`; one quota unit. No conditions + `symbols` = comparison table |
+| `backtest_condition` | Event study on one symbol/timeframe: occurrences of the conditions over the stored tape (≤ 1000 candles), forward return / win rate / best-worst excursion per horizon, the unconditional baseline and the edge over it, the last five episodes, and whether the condition is active now |
 | `get_tracked_symbols` | List all crypto futures symbols with real-time data available |
 
 ### Your Account
