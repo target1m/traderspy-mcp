@@ -1,0 +1,15 @@
+interface:
+  display_name: "Position Check"
+  short_description: "Risk report for your open positions: liquidation distance, levels, funding, who else is in"
+  default_prompt: "Check my open positions"
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "traderspy"
+      description: "TraderSpy MCP server — read-only crypto futures market data"
+      transport: "streamable_http"
+      url: "https://mcp.traderspy.app/mcp"

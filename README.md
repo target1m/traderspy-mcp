@@ -118,6 +118,26 @@ Add the following to your MCP configuration:
 }
 ```
 
+## Skills
+
+The plugin ships six skills — playbooks that tell the assistant which tools answer which question,
+how to read the fields, and how to present the result without turning market data into advice.
+They live in `skills/<name>/SKILL.md` (Agent Skills format) and load automatically in Claude Code;
+for the ChatGPT plugin portal run `scripts/package-skills.sh` and upload the ZIPs from `dist/skills/`.
+
+| Skill | Triggers on | Tools it drives |
+| --- | --- | --- |
+| `market-briefing` | "what's happening in crypto", "morning brief", "market update" | price, derivatives, screener, signal stats, signals |
+| `technical-analysis` | "analyse BTC", "is SOL oversold", support/resistance, funding, open interest | technical indicators (multi-timeframe), derivatives, price, candles |
+| `market-screener` | "which coins are oversold", "find setups", "compare BTC ETH SOL", "what happened after…" | screener, backtest |
+| `trading-signals` | "latest AI signals", "is this signal still valid", "how are the signals doing" | signals, signal details, signal stats |
+| `smart-money` | "what are whales doing", "best traders on Hyperliquid", "research this trader" | leaderboard, top traders, positions, profile, history, market stats |
+| `position-check` | "check my positions", "how far am I from liquidation", "what do you think of my long" | account, technicals, derivatives, positions |
+
+Every skill carries the same conduct rules: report what the data shows and leave the decision to the
+user, never present a hit rate or a backtest as a forecast, and say plainly that the connector cannot
+place, close or move anything.
+
 ## Authentication
 
 Two ways to connect, both tied to your TraderSpy account:

@@ -1,0 +1,15 @@
+interface:
+  display_name: "Market Briefing"
+  short_description: "A 30-second crypto market brief: majors, positioning, signals, movers"
+  default_prompt: "Give me a crypto market briefing"
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "traderspy"
+      description: "TraderSpy MCP server — read-only crypto futures market data"
+      transport: "streamable_http"
+      url: "https://mcp.traderspy.app/mcp"

@@ -1,0 +1,95 @@
+---
+name: position-check
+description: Health-check open crypto futures positions with TraderSpy data — the user's own Hyperliquid or paper positions read via get_my_account, or positions they describe in chat ("I'm long ETH from 2,400 at 10x"). Produces a structured risk report per position — distance to liquidation and to the stop, where price sits versus entry, the multi-timeframe technical read, funding cost or benefit and the open-interest regime, whether top traders are on the same or the opposite side, and what would invalidate the position's thesis. Use this whenever the user asks "how's my position", "check my account", "am I in trouble", "how far am I from liquidation", "should I hold or close", "what do you think of my long / short", "review my trades", or pastes a position. It reports and explains; it never tells the user to close, add, hedge or move a stop, and it cannot trade.
+---
+
+A position check answers, in order: how much room is left before this position is taken away
+(liquidation), how much before the user's own plan says it is wrong (stop), what the chart and
+the derivatives market are doing around it, and who else is positioned the same way. Report those
+facts with numbers. The decision — hold, trim, close, add — belongs to the person whose money it
+is.
+
+## Inputs
+
+**Account positions** → `get_my_account` (no arguments; needs the user's personal connection).
+Returns `hasWallet`, `balances { accountValueUsd, withdrawableUsd }`, `positions[]` with `coin`,
+`side` LONG / SHORT, `size`, `entryPrice`, `markPrice`, `leverage`, `marginMode` cross / isolated,
+`marginUsd`, `unrealizedPnl`, `liquidationPrice` (may be null), and `paper { enabled, balanceUsd,
+openPositions, positions[] }`. If `hasWallet` is false or `positions` is empty, say so and offer to
+check the paper positions or a position the user describes — do not invent one. If the call says
+the connection is not personal, tell the user a personal key from traderspy.app Settings is needed.
+
+**Described positions** → ask for whatever is missing among side, entry, leverage (and stop /
+target if they have one). Size is optional — the analysis works in percentages.
+
+Map the symbol to Binance naming for the data tools: `BTC` → `BTCUSDT`, `kPEPE` → `1000PEPEUSDT`,
+`xyz:AVGO` → `AVGOUSDT`.
+
+## Calls per position (keep it to what matters)
+
+1. `get_technical_indicators` — `intervals: ["1h","4h","1d"]`, `indicators: ["rsi","macd","ema",
+   "atr","adx","supertrend","levels"]`. One call. This gives the trend on three timeframes, ATR
+   for stop sanity and the nearest levels.
+2. `get_derivatives` — up to five coins in ONE call for all positions at once. Funding is a cost
+   or an income for this position; the OI regime says whether the move is being funded.
+3. `get_positions` — `symbol`, `status: "open"`, `limit: 20`. Optional; skip on a tight quota.
+   Tells you whether tracked top traders are on the same side.
+
+Three positions ≈ 1 + 3 + 1 (+3) calls. If the quota is tight, do the account call plus
+derivatives for all coins, then technicals for the position with the smallest liquidation
+distance first.
+
+## The math (show it, briefly)
+
+- P&L % on margin = (mark − entry) / entry × leverage, sign-flipped for shorts; P&L % on price =
+  the same without leverage. State both when leverage > 1.
+- Distance to liquidation = |liq − mark| / mark. With no `liquidationPrice`, approximate:
+  ≈ 100 / leverage % minus a maintenance buffer (say it is approximate; cross margin makes the
+  real distance depend on the whole account).
+- Distance to stop = |stop − mark| / mark, and stop distance in ATRs = |stop − mark| / ATR(14) on
+  the 4h. Under 1 ATR means the stop sits inside normal noise for that timeframe.
+- Funding per day ≈ `funding.ratePct` × 3 on notional; positive rate costs longs and pays shorts.
+
+Bands for the liquidation distance (the same ones TraderSpy uses on the account view): ≤ 5% →
+"at risk", ≤ 15% → "watch", above → "comfortable". These are labels for a distance, not
+instructions.
+
+## The report
+
+ALWAYS use this template per position:
+
+**<COIN> <SIDE> · <leverage>x · <marginMode>**
+
+- Entry <entry> → mark <mark> (<±x.x%> on price, <±y%> on margin) · uPnL <$>
+- Liquidation <liq> — <d%> away → **<at risk / watch / comfortable>**
+- Stop <stop or "none stated"> — <d%> / <n> ATR(4h) away · Target <if any>
+- Chart: 1h <bias, RSI, trend> · 4h <…> · 1d <…> · confluence <aligned / mixed>
+- Nearest levels: support <price (d%)>, resistance <price (d%)>
+- Derivatives: funding <label, annualized → cost or income for this side>, OI <regime>, top
+  traders <long %> (same side / opposite side)
+- Thesis check: what the position needs to keep working, and the level or reading that would
+  say it has stopped working
+- Scenarios: if price goes to <nearest level against> the position shows <P&L>; at <liquidation>
+  it is gone; at <nearest level for> it shows <P&L>
+
+Then one account-level line (account value, withdrawable, total uPnL, the position with the least
+room) and one plain sentence that crypto derivatives are high-risk and this is market information,
+not financial advice.
+
+Facts first, labels second, no verbs of instruction. "The stop sits 0.6 ATR away, inside normal 4h
+noise" is a report; "move your stop" is not.
+
+## Conduct
+
+- Never tell the user to close, hold, add, hedge, move a stop or change leverage. Present
+  distances, scenarios and the invalidation level; the decision is theirs. If they ask "should I
+  close", lay out what supports staying in and what argues against, then hand it back.
+- Distances and scenarios are arithmetic on current prices and levels the tools returned; they are
+  not predictions of where price will go.
+- Nothing in this connector trades — no order, close, transfer or withdrawal tool exists, by
+  design. Say so when asked to act, and point to https://traderspy.app.
+- Account data is the user's own and stays in the conversation; do not restate balances the user
+  did not ask about in later unrelated answers.
+- Quote only tool results; if `liquidationPrice` is null or a coin is not tracked, say so.
+
+Formulas and worked examples: `references/risk-math.md`.

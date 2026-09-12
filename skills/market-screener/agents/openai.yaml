@@ -1,0 +1,15 @@
+interface:
+  display_name: "Market Screener"
+  short_description: "Scan every major pair for a technical setup, then backtest what followed it"
+  default_prompt: "Which coins are oversold on the 4h right now, and what usually happened after?"
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "traderspy"
+      description: "TraderSpy MCP server — read-only crypto futures market data"
+      transport: "streamable_http"
+      url: "https://mcp.traderspy.app/mcp"

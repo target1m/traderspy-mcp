@@ -1,0 +1,15 @@
+interface:
+  display_name: "AI Signals"
+  short_description: "Latest TraderSpy AI crypto signals, their levels, and how past signals resolved"
+  default_prompt: "Show me the latest AI signals and how the last week's signals resolved"
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "traderspy"
+      description: "TraderSpy MCP server — read-only crypto futures market data"
+      transport: "streamable_http"
+      url: "https://mcp.traderspy.app/mcp"

@@ -1,0 +1,15 @@
+interface:
+  display_name: "Technical Analysis"
+  short_description: "Multi-timeframe indicator read, key levels, funding and open interest for one coin"
+  default_prompt: "Analyse BTC on the 1h, 4h and 1d with funding and open interest"
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "traderspy"
+      description: "TraderSpy MCP server — read-only crypto futures market data"
+      transport: "streamable_http"
+      url: "https://mcp.traderspy.app/mcp"

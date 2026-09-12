@@ -1,0 +1,15 @@
+interface:
+  display_name: "Smart Money"
+  short_description: "What top traders and whales hold across Binance, Hyperliquid, Bybit and OKX"
+  default_prompt: "What are the top traders long and short right now?"
+
+policy:
+  allow_implicit_invocation: true
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "traderspy"
+      description: "TraderSpy MCP server — read-only crypto futures market data"
+      transport: "streamable_http"
+      url: "https://mcp.traderspy.app/mcp"
