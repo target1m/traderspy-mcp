@@ -2,7 +2,10 @@
   "mcpServers": {
     "traderspy": {
       "type": "http",
-      "url": "${TRADERSPY_MCP_URL:-https://mcp.traderspy.app/mcp}"
+      "url": "${TRADERSPY_MCP_URL:-https://mcp.traderspy.app/mcp}",
+      "headers": {
+        "Authorization": "Bearer ${user_config.api_key}"
+      }
     }
   }
 }

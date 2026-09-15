@@ -38,6 +38,13 @@ Inside Claude Code, run:
 /plugin install traderspy@traderspy-mcp
 ```
 
+The plugin asks for your **TraderSpy API key** when you enable it. Generate one at
+<https://traderspy.app/mcp> (Settings → MCP) — it starts with `mcp_` and is shown once. Claude Code
+stores it in your keychain and sends it as a bearer token; it never lands in `settings.json` or in
+the repo. A free account is enough (5 tool calls/day, 100 on premium). The plugin also ships six
+skills — market briefing, technical analysis, market screener, trading signals, smart money and
+position check.
+
 ### ChatGPT
 
 1. Go to [ChatGPT](https://chatgpt.com) → Settings → Connected Apps
