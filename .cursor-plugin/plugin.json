@@ -1,0 +1,29 @@
+{
+  "name": "traderspy",
+  "displayName": "TraderSpy",
+  "description": "Live crypto futures data for your agent: AI trading signals, whale positions across Binance, Hyperliquid, Bybit and OKX, 19 technical indicators, funding and open interest, a market screener and a backtester. Read-only — no order, transfer or withdrawal tools.",
+  "version": "1.4.0",
+  "author": {
+    "name": "TraderSpy",
+    "email": "support@traderspy.app"
+  },
+  "homepage": "https://traderspy.app/mcp",
+  "repository": "https://github.com/target1m/traderspy-mcp",
+  "license": "MIT",
+  "keywords": ["crypto", "trading", "smart-money", "signals", "technical-analysis", "binance", "hyperliquid", "bybit", "okx", "mcp"],
+  "logo": "logo-400.png",
+  "skills": "./skills/",
+  "mcpServers": "./mcp.json",
+  "variables": {
+    "type": "object",
+    "properties": {
+      "TRADERSPY_API_KEY": {
+        "type": "string",
+        "title": "TraderSpy API key",
+        "description": "Personal key from https://traderspy.app/mcp (Settings → MCP). Starts with mcp_ and is shown once. A free account is enough: 5 tool calls per day, 100 on premium.",
+        "minLength": 5
+      }
+    },
+    "required": ["TRADERSPY_API_KEY"]
+  }
+}

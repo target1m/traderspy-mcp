@@ -100,14 +100,22 @@ so does this server.
 
 ### Cursor
 
-`.cursor/mcp.json`:
+**As a plugin** — also installs the six [skills](#skills). This repo is a Cursor plugin
+(`.cursor-plugin/plugin.json` + `mcp.json`): install **TraderSpy** from the Cursor Marketplace
+(listing in review), or clone the repo into `~/.cursor/plugins/local/traderspy` and run
+**Developer: Reload Window**. Cursor asks for your key as `TRADERSPY_API_KEY` at install (change it
+later under **Plugins → Configure**) and sends it as a bearer token; it never lands in your repo.
+
+**Or as a plain MCP server** — `.cursor/mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "traderspy": {
-      "type": "http",
-      "url": "https://mcp.traderspy.app/mcp"
+      "url": "https://mcp.traderspy.app/mcp",
+      "headers": {
+        "Authorization": "Bearer mcp_YOUR_KEY"
+      }
     }
   }
 }
@@ -239,7 +247,8 @@ content — nothing degrades.
 
 The plugin ships six skills: playbooks that tell the assistant which tools answer which question,
 how to read the fields, and how to present the result without turning market data into advice. They
-live in `skills/<name>/SKILL.md` (Agent Skills format) and load automatically in Claude Code. For the
+live in `skills/<name>/SKILL.md` (Agent Skills format) and load automatically in Claude Code and
+Cursor. For the
 ChatGPT plugin portal, run `scripts/package-skills.sh` and upload the ZIPs from `dist/skills/`.
 
 | Skill | Triggers on | Tools it drives |
@@ -389,6 +398,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-09-22 | Cursor plugin: `.cursor-plugin/plugin.json` + `mcp.json`, key as `TRADERSPY_API_KEY` |
 | 2026-09-15 | Plugin asks for the API key at install instead of connecting keyless (v1.4.0) |
 | 2026-09-12 | Six playbook skills, packaged per skill for the ChatGPT plugin portal |
 | 2026-09-09 | `screen_symbols` and `backtest_condition` — the condition language; 18 tools |

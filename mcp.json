@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "traderspy": {
+      "url": "https://mcp.traderspy.app/mcp",
+      "headers": {
+        "Authorization": "Bearer ${TRADERSPY_API_KEY}"
+      }
+    }
+  }
+}
