@@ -261,9 +261,17 @@ content — nothing degrades.
 
 The plugin ships six skills: playbooks that tell the assistant which tools answer which question,
 how to read the fields, and how to present the result without turning market data into advice. They
-live in `skills/<name>/SKILL.md` (Agent Skills format) and load automatically in Claude Code and
-Cursor. For the
-ChatGPT plugin portal, run `scripts/package-skills.sh` and upload the ZIPs from `dist/skills/`.
+live in `skills/<name>/SKILL.md` (Agent Skills format) and load automatically in Claude Code,
+Cursor, Grok Build and Gemini CLI. For the ChatGPT plugin portal, run `scripts/package-skills.sh`
+and upload the ZIPs from `dist/skills/`.
+
+Any other Agent Skills client can install them with the [skills](https://skills.sh) CLI. The
+skills need the MCP server connected, as shown in [Quick start](#quick-start):
+
+```bash
+npx skills add target1m/traderspy-mcp                          # all six
+npx skills add target1m/traderspy-mcp --skill market-briefing  # just one
+```
 
 | Skill | Triggers on | Tools it drives |
 | --- | --- | --- |
