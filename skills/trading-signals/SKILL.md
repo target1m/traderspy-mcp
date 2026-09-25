@@ -38,8 +38,9 @@ Convert target percentages to prices before showing them — users think in pric
 
 - buy: TP = price × (1 + pct/100), SL = price × (1 − pct/100)
 - sell: TP = price × (1 − pct/100), SL = price × (1 + pct/100)
-- reward-to-risk at TP1 = TP1 pct ÷ SL pct (a 0.7 R:R is normal for this system — its edge came
-  from hit rate, not from wide targets; do not call a sub-1 R:R "bad" without the hit rate).
+- reward-to-risk at TP1 = TP1 pct ÷ SL pct (a 0.7 R:R is normal for this system, whose first target
+  sits close to entry; read it together with the hit rate from `get_signal_stats`, and do not call a
+  sub-1 R:R "bad" on its own).
 
 `resolutionStatus` is the outcome so far:
 

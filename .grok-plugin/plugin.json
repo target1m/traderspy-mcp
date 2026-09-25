@@ -1,6 +1,6 @@
 {
   "name": "traderspy",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Live crypto futures data for Grok Build: AI trading signals, whale positions across Binance, Hyperliquid, Bybit and OKX, 19 technical indicators, funding and open interest, a market screener and a backtester. Read-only — no order, transfer or withdrawal tools.",
   "author": {
     "name": "TraderSpy",

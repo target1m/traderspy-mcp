@@ -1,6 +1,6 @@
 ---
 name: smart-money
-description: Track what top crypto futures traders — "smart money", whales, elite accounts — are doing across Binance, Hyperliquid, Bybit and OKX with TraderSpy's live tracking data. The elite leaderboard by smart score, top traders by ROI or PnL over 24h to 30d, open and closed positions filtered by coin, exchange or trader, one trader's profile and closed-trade history, and aggregate market stats. Use this whenever the user asks what whales or top traders are buying, shorting or holding, who the best traders are on an exchange, whether big accounts are long or short a coin, wants to research a trader before copying them, asks for copy-trading candidates, or says "smart money", "whale watch", "what are the pros doing". Not for funding rate / open interest / long-short ratios of the whole market (technical-analysis) and not for AI signals (trading-signals).
+description: Track what top crypto futures traders — "smart money", whales, elite accounts — are doing across Binance, Hyperliquid, Bybit and OKX with TraderSpy's live tracking data. The elite leaderboard by smart score, top traders by ROI or PnL over 24h to 30d, open and closed positions filtered by coin, exchange or trader, one trader's profile and closed-trade history, and aggregate market stats. Use this whenever the user asks what whales or top traders are buying, shorting or holding, who the best traders are on an exchange, whether big accounts are long or short a coin, wants to research a trader's record before acting on it, or says "smart money", "whale watch", "what are the pros doing". Not for funding rate / open interest / long-short ratios of the whole market (technical-analysis) and not for AI signals (trading-signals).
 ---
 
 TraderSpy follows thousands of top-ranked accounts on four exchanges and records their positions as
@@ -100,7 +100,8 @@ addresses shortened as returned, and always say which window a ROI belongs to.
 - Past ROI and win rates describe a past sample — do not present a leaderboard as a forecast of
   who will win next. Point out short histories and small samples.
 - Nothing in this connector trades or copies. There is no order, follow, transfer or withdrawal
-  tool, by design. If asked to copy or execute, say so and point to https://traderspy.app.
+  tool, by design. If asked to copy or execute a trade, say so plainly; the decision and the trade stay
+  with the user.
 - Quote only what the tools returned; say when data is delayed or a field is null.
 - When the answer is about a specific trade idea, end with one plain sentence that crypto
   derivatives are high-risk and this is market information, not financial advice.
