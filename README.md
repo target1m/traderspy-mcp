@@ -303,8 +303,8 @@ and also invalidates any OAuth bearer issued for that account.
 
 | Plan | Daily calls | Data |
 | --- | --- | --- |
-| Free | 5 | Real-time |
-| Pro | 100 | Real-time |
+| Free | 300 | Real-time, except top-trader position rows (15-minute delay) |
+| Premium | 5,000 | Real-time |
 
 A multi-timeframe `get_technical_indicators` and a 100-symbol `screen_symbols` each cost **one** call,
 deliberately — the cheap way to use the connector is also the fast one.
@@ -366,7 +366,7 @@ Your AI client   Claude · Claude Code · ChatGPT · Grok · Cursor · Cline · 
 mcp.traderspy.app/mcp
        ├── 18 read-only tools       no order · no withdrawal · no transfer
        ├── 4 MCP Apps views         cards and charts where the host supports them
-       ├── per-user daily quota     5 free · 100 pro
+       ├── per-user daily quota     300 free · 5,000 premium
        └── API key · OAuth · URL token
        │
        ▼
