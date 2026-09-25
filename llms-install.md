@@ -24,7 +24,7 @@ the user to generate their own:
 2. Open <https://traderspy.app/mcp>, or Settings → MCP.
 3. Generate the key. It starts with `mcp_` and is shown **once** — the user should copy it now.
 
-Free accounts get 5 tool calls per day, premium 100.
+Free accounts get 300 tool calls per day, premium 5,000.
 
 ## Step 2 — write the configuration
 
@@ -96,6 +96,6 @@ Every tool declares an output schema, so structured results are typed.
 - **405 on connect** — `type` is not `streamableHttp`.
 - **`Authentication required` on every call** — missing/expired key. The user can revoke and
   regenerate at <https://traderspy.app/mcp>; revoking a key takes effect on the next call.
-- **Daily limit reached** — free tier is 5 calls/day. Wait for the reset or upgrade.
+- **Daily limit reached** — free tier is 300 calls/day. Wait for the reset or upgrade.
 - **Empty candles or indicators for a symbol** — that pair is not tracked; call
   `get_tracked_symbols` to see what is.

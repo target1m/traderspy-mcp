@@ -149,6 +149,15 @@ later under **Plugins → Configure**) and sends it as a bearer token; it never 
 `type` must be exactly `streamableHttp`. `streamable-http`, or leaving `type` out, falls back to SSE
 and the server answers 405. Full walkthrough: **[llms-install.md](llms-install.md)**.
 
+### Gemini CLI
+
+```bash
+gemini extensions install https://github.com/target1m/traderspy-mcp
+```
+
+The extension (`gemini-extension.json`) adds the server and the six skills. It signs in with
+OAuth rather than a key: run `/mcp auth traderspy` once inside Gemini CLI.
+
 ### Windsurf and other MCP clients
 
 ```json
@@ -403,6 +412,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-09-25 | Gemini CLI extension (`gemini-extension.json`), `server.json` for registries that read the repo, limits quoted as 300/5,000 a day (v1.6.0) |
 | 2026-09-25 | Grok Build plugin: `.grok-plugin/plugin.json` + `mcp.json`, key from `TRADERSPY_API_KEY` (v1.5.0) |
 | 2026-09-22 | Cursor plugin: `.cursor-plugin/plugin.json` + `mcp.json`, key as `TRADERSPY_API_KEY` |
 | 2026-09-15 | Plugin asks for the API key at install instead of connecting keyless (v1.4.0) |

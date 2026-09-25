@@ -63,8 +63,8 @@ Claude chains tools by itself. No tool-name juggling.
 ### 4/
 
 ```
-Free tier: 3 calls/day.
-Pro: 100 calls/day.
+Free tier: 300 calls/day.
+Pro: 5,000 calls/day.
 
 Read-only — the plugin can't trade or move funds. It just answers questions with real data.
 

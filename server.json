@@ -1,0 +1,45 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "app.traderspy/traderspy",
+  "title": "TraderSpy",
+  "description": "AI crypto signals, whale positions, 19 technical indicators, derivatives, screener and backtests",
+  "version": "3.0.0",
+  "websiteUrl": "https://traderspy.app/mcp",
+  "repository": {
+    "url": "https://github.com/target1m/traderspy-mcp",
+    "source": "github",
+    "id": "1178882102"
+  },
+  "icons": [
+    {
+      "src": "https://traderspy.app/favicon.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "512x512"
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.traderspy.app/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Personal TraderSpy MCP key. Generate one for free at https://traderspy.app/mcp",
+          "isRequired": true,
+          "isSecret": true,
+          "value": "Bearer {api_key}",
+          "variables": {
+            "api_key": {
+              "description": "TraderSpy MCP key, starts with mcp_",
+              "isRequired": true,
+              "isSecret": true,
+              "format": "string"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
