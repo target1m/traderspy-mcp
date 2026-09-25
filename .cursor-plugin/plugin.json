@@ -2,7 +2,7 @@
   "name": "traderspy",
   "displayName": "TraderSpy",
   "description": "Live crypto futures data for your agent: AI trading signals, whale positions across Binance, Hyperliquid, Bybit and OKX, 19 technical indicators, funding and open interest, a market screener and a backtester. Read-only — no order, transfer or withdrawal tools.",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "author": {
     "name": "TraderSpy",
     "email": "support@traderspy.app"

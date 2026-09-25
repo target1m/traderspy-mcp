@@ -95,6 +95,11 @@ From the terminal, Grok Build takes the same URL:
 grok mcp add --transport http traderspy "https://mcp.traderspy.app/mcp?token=mcp_YOUR_KEY"
 ```
 
+As a Grok Build **plugin** (the server plus the six skills), the repo carries `.grok-plugin/plugin.json`
+and `.grok-plugin/mcp.json`; the xAI plugin marketplace listing is in review. Grok Build has no
+install-time prompt for secrets, so the plugin reads your key from `TRADERSPY_API_KEY` in the
+environment that launches `grok`.
+
 The same endpoint works as a remote MCP tool in the xAI API. Grok speaks Streamable HTTP and SSE —
 so does this server.
 
@@ -398,6 +403,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-09-25 | Grok Build plugin: `.grok-plugin/plugin.json` + `mcp.json`, key from `TRADERSPY_API_KEY` (v1.5.0) |
 | 2026-09-22 | Cursor plugin: `.cursor-plugin/plugin.json` + `mcp.json`, key as `TRADERSPY_API_KEY` |
 | 2026-09-15 | Plugin asks for the API key at install instead of connecting keyless (v1.4.0) |
 | 2026-09-12 | Six playbook skills, packaged per skill for the ChatGPT plugin portal |
