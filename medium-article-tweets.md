@@ -1,3 +1,7 @@
+> **Archived launch copy (2026-08-15).** The numbers below are from launch day. Today the server has
+> 18 read-only tools and 19 technical indicators, and the free tier is 300 tool calls a day (5,000 on
+> premium). The [README](README.md) has the current details.
+
 # Tweets for the Medium article
 
 Replace `<MEDIUM_LINK>` with the published article URL before posting.
@@ -63,8 +67,8 @@ Claude chains tools by itself. No tool-name juggling.
 ### 4/
 
 ```
-Free tier: 300 calls/day.
-Pro: 5,000 calls/day.
+Free tier: 3 calls/day.
+Pro: 100 calls/day.
 
 Read-only — the plugin can't trade or move funds. It just answers questions with real data.
 
