@@ -1,5 +1,5 @@
 > **Archived launch copy (2026-08-15).** The numbers below are from launch day. Today the server has
-> 18 read-only tools and 19 technical indicators, and the free tier is 300 tool calls a day (5,000 on
+> 17 read-only tools and 19 technical indicators, and the free tier is 300 tool calls a day (5,000 on
 > premium). The [README](README.md) has the current details.
 
 # Tweets for the Medium article

@@ -1,19 +1,18 @@
 # Risk math for position checks
 
-All formulas use the tool outputs; leverage is the position's `leverage`, mark is `markPrice`.
+Entry, side and leverage come from the user; mark is the current `price` from the data tools.
 
 ## P&L
 
 - Price move % = (mark − entry) / entry × 100, sign-flipped for a SHORT.
 - Return on margin % ≈ price move % × leverage (isolated margin; for cross margin the same figure
   describes the position, not the account).
-- Unrealized P&L in USD comes from the tool (`unrealizedPnl`); do not recompute it from size unless
-  the tool omitted it, and say so if you do.
+- Unrealized P&L in USD needs the size; compute it only when the user gave one, and say so.
 
 ## Liquidation
 
-- Exact: `liquidationPrice` from `get_my_account` → distance % = |liq − mark| / mark × 100.
-- Approximation when it is null: distance % ≈ 100 / leverage − maintenance margin (assume ~0.5–1%
+- Exact: the liquidation price the user's exchange shows → distance % = |liq − mark| / mark × 100.
+- Approximation when the user has none: distance % ≈ 100 / leverage − maintenance margin (assume ~0.5–1%
   and say "approximately"). 10x → ~9%, 20x → ~4%, 40x → ~2%. Cross margin can be wider (the whole
   account backs it) or tighter (other positions drain it); the exact figure is the exchange's.
 

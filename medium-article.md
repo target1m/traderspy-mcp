@@ -1,5 +1,5 @@
 > **Archived launch copy (2026-08-15).** The numbers below are from launch day. Today the server has
-> 18 read-only tools and 19 technical indicators, and the free tier is 300 tool calls a day (5,000 on
+> 17 read-only tools and 19 technical indicators, and the free tier is 300 tool calls a day (5,000 on
 > premium). The [README](README.md) has the current details.
 
 # Plug Smart Money Into Claude: A 60-Second Setup With TraderSpy MCP
@@ -43,9 +43,6 @@ TraderSpy's MCP server exposes 15 read-only tools, all hitting production data:
 - `get_candles` — OHLCV (1m → 1d), up to 500 candles
 - `get_technical_indicators` — RSI, MACD, EMA, SMA, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R
 - `get_tracked_symbols` — what data is available
-
-**Your account**
-- `get_my_account` — your own Hyperliquid balance, open positions and unrealized PnL
 
 The tools are read-only. The plugin can't trade for you. It can't move funds. It can only *answer questions*.
 

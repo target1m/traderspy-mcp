@@ -8,10 +8,10 @@
 
 [![TraderSpy MCP connector on Glama](https://glama.ai/mcp/connectors/app.traderspy/traderspy/badges/score.svg)](https://glama.ai/mcp/connectors/app.traderspy/traderspy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/target1m/traderspy-mcp/blob/master/LICENSE)
-[![Tools](https://img.shields.io/badge/tools-18%20read--only-2ea44f)](#tool-catalogue)
+[![Tools](https://img.shields.io/badge/tools-17%20read--only-2ea44f)](#tool-catalogue)
 [![Transport](https://img.shields.io/badge/transport-Streamable%20HTTP-blue)](#quick-start)
 
-**18 read-only tools · 4 exchanges · 19 technical indicators · 4 interactive views**
+**17 read-only tools · 4 exchanges · 19 technical indicators · 3 interactive views**
 One URL. No install, no daemon, no broker, no API keys of your own.
 
 </div>
@@ -20,8 +20,8 @@ One URL. No install, no daemon, no broker, no API keys of your own.
 
 Connect Claude, Claude Code, ChatGPT, Grok, Cursor, Cline or any MCP client to TraderSpy's live
 crypto futures data: AI-generated signals with real targets, whale positioning across four
-exchanges, prices, candles, indicators, derivatives, a condition screener, an event-study
-backtester — and your own account.
+exchanges, prices, candles, indicators, derivatives, a condition screener and an event-study
+backtester.
 
 ```
 You ask:                             It calls:                     It reads:
@@ -31,12 +31,11 @@ You ask:                             It calls:                     It reads:
 "What are the whales doing?"     →  get_positions()            →  Binance · Hyperliquid · Bybit · OKX
 "Is this signal still valid?"    →  get_signal_details()       →  live price against entry / TP / SL
 "What happens after this setup?" →  backtest_condition()       →  up to 1000 stored candles
-"How close am I to liquidation?" →  get_my_account()           →  your own Hyperliquid account
 ```
 
-> **Every tool is read-only.** This connector cannot place, close or modify an order — not even on a
-> paper account — and it has no withdrawal or transfer tool. It answers questions; you place your
-> own trades. See [Security](#security).
+> **Every tool is read-only.** This connector cannot place, close or modify an order, it has no
+> withdrawal or transfer tool, and it cannot see anyone's account. It answers questions with public
+> market data. See [Security](#security).
 
 ---
 
@@ -186,7 +185,6 @@ The server publishes this routing to the model itself, so you rarely have to nam
 | AI signals, their detail, their track record | `get_signals` · `get_signal_details` · `get_signal_stats` |
 | Whales, best traders, who is long X | `get_top_traders` · `get_elite_leaderboard` · `get_trader_profile` · `get_trader_position_history` · `get_positions` |
 | Coverage and venue context | `get_tracked_symbols` · `get_exchanges` · `get_market_stats` |
-| Your own balance, positions, unrealized PnL | `get_my_account` |
 
 **Batch, don't loop.** Calls are metered per day, and the tools are built so one call replaces many:
 several symbols in a single `get_price`, three timeframes in a single `get_technical_indicators`
@@ -197,7 +195,7 @@ indicators symbol by symbol.
 
 ## Tool catalogue
 
-**18 tools, every one read-only, every one annotated `readOnlyHint: true`.**
+**17 tools, every one read-only, every one annotated `readOnlyHint: true`.**
 
 ### Signals — 3 tools
 
@@ -231,17 +229,11 @@ indicators symbol by symbol.
 | `backtest_condition` | Event study on one symbol and timeframe: every occurrence over the stored tape (≤ 1000 candles), forward return / win rate / best and worst excursion per horizon, the unconditional baseline and the **edge over it**, the last five episodes, and whether the condition is live right now |
 | `get_tracked_symbols` | Every symbol with real-time data available |
 
-### Your account — 1 tool
-
-| Tool | What it returns |
-| --- | --- |
-| `get_my_account` | Your Hyperliquid balance, open positions, unrealized PnL and paper account. Read-only, personal key required |
-
 ---
 
 ## Interactive views
 
-In hosts that support **MCP Apps**, four tools render a real interface instead of a wall of text.
+In hosts that support **MCP Apps**, three tools render a real interface instead of a wall of text.
 Every view is a single self-contained HTML bundle with a deny-all CSP — it makes no network call of
 its own, because the data arrives inside the tool result.
 
@@ -249,7 +241,6 @@ its own, because the data arrives inside the tool result.
 | --- | --- |
 | `get_signals` | A card carousel — each card charts 24h of price with the entry, the next unreached take-profit and the stop drawn across it. Pages through the full result set, it never shows a silent slice |
 | `get_signal_details` | One signal: chart with a price scale, the live price, entry / exit / level-hit markers judged on wicks, every level as an absolute price, the realised outcome and the validation meters |
-| `get_my_account` | Balance and position cards, each charting entry against liquidation, with the strip coloured by how close you are |
 | `get_technical_indicators` | Per timeframe a 96-bar chart with EMA lines, the SuperTrend band and swing / pivot support-resistance drawn across it, the summary's notes, one chip per indicator and a levels table. Several timeframes become tabs; footer buttons re-run the tool for 1h / 4h / 1d |
 
 Verified on claude.ai web with the deployed connector. Hosts without MCP Apps get the same data as text and structured
@@ -280,7 +271,7 @@ npx skills add target1m/traderspy-mcp --skill market-briefing  # just one
 | `market-screener` | "which coins are oversold", "find setups", "compare BTC ETH SOL", "what happened after…" | screener, backtest |
 | `trading-signals` | "latest AI signals", "is this signal still valid", "how are the signals doing" | signals, signal details, signal stats |
 | `smart-money` | "what are whales doing", "best traders on Hyperliquid", "research this trader" | leaderboard, top traders, positions, profile, history, market stats |
-| `position-check` | "check my positions", "how far am I from liquidation", "what do you think of my long" | account, technicals, derivatives, positions |
+| `position-check` | "how far am I from liquidation", "what do you think of my long", a pasted position | technicals, derivatives, positions |
 
 Every skill carries the same conduct rules: report what the data shows and leave the decision to the
 user, never present a hit rate or a backtest as a forecast, and say plainly that the connector cannot
@@ -297,7 +288,7 @@ Two ways to connect, both tied to your TraderSpy account:
   authentication can be left on "None". Shown once, revocable any time.
 - **OAuth** — for clients that drive the flow themselves.
 
-Treat the personal URL like a password: it grants read access to your account data. If it leaks,
+Treat the personal URL like a password: anyone holding it can spend your daily quota. If it leaks,
 revoke it on the same page and generate a new one — revocation takes effect on the very next call,
 and also invalidates any OAuth bearer issued for that account.
 
@@ -320,16 +311,16 @@ This connector's security model is mostly a list of things that do not exist.
 | Scope | How you authenticate | What it can reach |
 | --- | --- | --- |
 | Anonymous | nothing | the tool catalogue only — `tools/list`, so directories can index it. Every actual call is refused |
-| Personal key | `mcp_…` as a bearer token or `?token=` | all public market data, plus your own account |
+| Personal key | `mcp_…` as a bearer token or `?token=` | all public market data |
 | OAuth | host-driven flow | the same |
 
 **What no credential can do here:**
 
-- **No order tool.** Placing, closing or modifying an order does not exist — for live or paper
-  accounts. The order tools were not hidden or feature-flagged; they were deleted.
+- **No order tool.** Placing, closing or modifying an order does not exist. The order tools were not
+  hidden or feature-flagged; they were deleted.
 - **No withdrawal, transfer or deposit tool.**
-- **No write of any kind.** The connector's client toward the trading service exposes read wrappers
-  only, so no code path can reach a mutating route even by mistake.
+- **No account tool.** Nothing reads a balance or a position, and the connector has no client
+  toward the trading service at all, so no code path can reach an account even by mistake.
 - **No standing rules.** It cannot create alerts, subscriptions or automations on your account.
 
 Two reasons, and the second is the load-bearing one. First, the Anthropic Software Directory Policy
@@ -364,8 +355,8 @@ Your AI client   Claude · Claude Code · ChatGPT · Grok · Cursor · Cline · 
        │  MCP over Streamable HTTP (+ SSE)
        ▼
 mcp.traderspy.app/mcp
-       ├── 18 read-only tools       no order · no withdrawal · no transfer
-       ├── 4 MCP Apps views         cards and charts where the host supports them
+       ├── 17 read-only tools       no order · no withdrawal · no account
+       ├── 3 MCP Apps views         cards and charts where the host supports them
        ├── per-user daily quota     300 free · 5,000 premium
        └── API key · OAuth · URL token
        │
@@ -405,10 +396,10 @@ TraderSpy platform
 
 > "Is the latest BTC signal still valid? Show me where price is against its entry, targets and stop."
 
-**Review your own book**
+**Check a position you hold elsewhere**
 
-> "Show my account. For each open position, how far is liquidation, and what do the 1h/4h/1d
-> indicators say about it?"
+> "I'm long ETH from 2,400 at 10x. How far is liquidation, and what do the 1h/4h/1d indicators say
+> about it?"
 
 **Compare coins**
 
@@ -420,6 +411,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-09-25 | `get_my_account` and its account view removed — TraderSpy offers no trading or balances, so the connector reads public market data only (17 tools). `position-check` works on positions the user describes (v1.7.0) |
 | 2026-09-25 | No skill sends the user to traderspy.app to execute: the decision and the trade stay with them (v1.6.3) |
 | 2026-09-25 | Skill copy matches the product as it is now: no copy-trading pointer in `smart-money`, no edge claim in `trading-signals` (v1.6.2) |
 | 2026-09-25 | `trading-signals` points at the signals feed; the /performance page it linked was retired (v1.6.1) |
