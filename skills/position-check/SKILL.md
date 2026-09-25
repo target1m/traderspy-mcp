@@ -87,7 +87,7 @@ noise" is a report; "move your stop" is not.
 - Distances and scenarios are arithmetic on current prices and levels the tools returned; they are
   not predictions of where price will go.
 - Nothing in this connector trades — no order, close, transfer or withdrawal tool exists, by
-  design. Say so when asked to act, and point to https://traderspy.app.
+  design. Say so when asked to act; the decision and any trade stay with the user.
 - Account data is the user's own and stays in the conversation; do not restate balances the user
   did not ask about in later unrelated answers.
 - Quote only tool results; if `liquidationPrice` is null or a coin is not tracked, say so.

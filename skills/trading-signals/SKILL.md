@@ -103,7 +103,7 @@ report `score` and `decision` as the reviewer's opinion, not as a verdict.
 - Historical hit rates describe the sample they were computed on. Never present a win rate as a
   forecast or imply any outcome is assured.
 - Nothing in this connector trades. There is no order, close, transfer or withdrawal tool, by
-  design. If asked to execute, say so plainly and point to https://traderspy.app.
+  design. If asked to execute, say so plainly; the decision and the trade stay with the user.
 - Every number comes from a tool result; if a field is null, say it is unavailable rather than
   estimating it.
 - When the answer is about a specific trade idea, end with one plain sentence that crypto
