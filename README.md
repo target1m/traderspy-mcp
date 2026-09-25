@@ -420,6 +420,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-09-25 | `trading-signals` points at the signals feed; the /performance page it linked was retired (v1.6.1) |
 | 2026-09-25 | Gemini CLI extension (`gemini-extension.json`), `server.json` for registries that read the repo, limits quoted as 300/5,000 a day (v1.6.0) |
 | 2026-09-25 | Grok Build plugin: `.grok-plugin/plugin.json` + `mcp.json`, key from `TRADERSPY_API_KEY` (v1.5.0) |
 | 2026-09-22 | Cursor plugin: `.cursor-plugin/plugin.json` + `mcp.json`, key as `TRADERSPY_API_KEY` |

@@ -1,6 +1,6 @@
 {
   "name": "traderspy",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Live crypto futures data: AI trading signals with realised outcomes, whale positions across Binance, Hyperliquid, Bybit and OKX, 19 technical indicators, funding and open interest, a screener and a backtester. Read-only.",
   "mcpServers": {
     "traderspy": {

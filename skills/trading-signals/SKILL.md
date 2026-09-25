@@ -6,7 +6,8 @@ description: Query, explain and evaluate TraderSpy's AI crypto futures signals �
 TraderSpy's AI signals are automated reads of the market: a named preset fires when several
 technical conditions line up on one crypto futures pair, a validator scores the alignment, and
 the published signal carries an entry, a take-profit ladder, a stop and — later — what actually
-happened. Every outcome is public at https://traderspy.app/performance. Your job is to fetch,
+happened. The signals feed at https://traderspy.app/signals publishes every one with its resolved
+outcome. Your job is to fetch,
 translate and contextualise them; the decision stays with the user.
 
 ## Tools
@@ -94,7 +95,7 @@ report `score` and `decision` as the reviewer's opinion, not as a verdict.
 
 ## Conduct
 
-- These are indicator alignments with a public track record, not instructions. Report what the
+- These are indicator alignments with published outcomes, not instructions. Report what the
   signal says, what has happened to it and what has happened to signals like it; if the user asks
   whether to take it, lay out what supports and what undercuts it and hand the decision back. Never
   tell the user to buy, sell, size or leverage.
