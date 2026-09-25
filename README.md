@@ -6,7 +6,7 @@
 
 **Crypto smart money & AI signals, wired straight into your AI assistant.**
 
-[![Glama](https://glama.ai/mcp/servers/target1m/traderspy-mcp/badge)](https://glama.ai/mcp/connectors/app.traderspy/traderspy)
+[![TraderSpy MCP connector on Glama](https://glama.ai/mcp/connectors/app.traderspy/traderspy/badges/score.svg)](https://glama.ai/mcp/connectors/app.traderspy/traderspy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/target1m/traderspy-mcp/blob/master/LICENSE)
 [![Tools](https://img.shields.io/badge/tools-18%20read--only-2ea44f)](#tool-catalogue)
 [![Transport](https://img.shields.io/badge/transport-Streamable%20HTTP-blue)](#quick-start)
