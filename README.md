@@ -7,6 +7,7 @@
 **Crypto smart money & AI signals, wired straight into your AI assistant.**
 
 [![TraderSpy MCP connector on Glama](https://glama.ai/mcp/connectors/app.traderspy/traderspy/badges/score.svg)](https://glama.ai/mcp/connectors/app.traderspy/traderspy)
+[![MCP status](https://mcpi.app/servers/traderspy/badge.svg)](https://mcpi.app/servers/traderspy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/target1m/traderspy-mcp/blob/master/LICENSE)
 [![Tools](https://img.shields.io/badge/tools-17%20read--only-2ea44f)](#tool-catalogue)
 [![Transport](https://img.shields.io/badge/transport-Streamable%20HTTP-blue)](#quick-start)
@@ -433,6 +434,7 @@ TraderSpy platform
 - **[TraderSpy](https://traderspy.app)** — the platform
 - **[traderspy.app/mcp](https://traderspy.app/mcp)** — generate your key, read the tutorial
 - **[Glama listing](https://glama.ai/mcp/connectors/app.traderspy/traderspy)** — independent inspection and tool grading
+- **[mcpi listing](https://mcpi.app/servers/traderspy)** — uptime, auth matrix and a classified contract changelog, probed every six hours
 - **[llms-install.md](llms-install.md)** — install walkthrough for AI agents
 - **[Smithery](https://smithery.ai/servers/traderspy/traderspy)** — alternative install path
 - **[Privacy policy](https://traderspy.app/privacy-policy)** · **[Support](mailto:support@traderspy.app)**
