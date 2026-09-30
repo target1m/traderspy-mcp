@@ -2,7 +2,7 @@
   "name": "traderspy-mcp",
   "displayName": "TraderSpy",
   "description": "TraderSpy — Read-only smart money tracking, AI trading signals, and elite trader leaderboard for crypto futures. Track whale positions across Binance, Hyperliquid, Bybit, and OKX. No order or withdrawal tools.",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "author": {
     "name": "TraderSpy",
     "email": "support@traderspy.app"
@@ -11,14 +11,5 @@
   "repository": "https://github.com/target1m/traderspy-mcp",
   "license": "MIT",
   "keywords": ["crypto", "trading", "smart-money", "signals", "binance", "hyperliquid", "bybit", "okx"],
-  "mcpServers": "./.mcp.json",
-  "userConfig": {
-    "api_key": {
-      "type": "string",
-      "title": "TraderSpy API key",
-      "description": "Personal key from https://traderspy.app/mcp (Settings → MCP). Starts with mcp_ and is shown once. A free account is enough: 300 tool calls per day, 5,000 on premium.",
-      "sensitive": true,
-      "required": true
-    }
-  }
+  "mcpServers": "./.mcp.json"
 }

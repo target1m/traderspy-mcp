@@ -52,8 +52,12 @@ You ask:                             It calls:                     It reads:
 ## Quick start
 
 Everything below points at the same endpoint: `https://mcp.traderspy.app/mcp`.
-Generate a personal key at **[traderspy.app/mcp](https://traderspy.app/mcp)** (Settings → MCP) — it
-starts with `mcp_`, is shown once, and is revocable at any time. A free account is enough.
+
+**Claude, Claude Code, ChatGPT, Grok and Gemini sign in with your TraderSpy account** (OAuth), so
+there is no key to copy. A free account is enough. Clients that cannot open a sign-in window
+(Cursor, Cline, Windsurf, Grok Build, n8n, scripts) use a personal key instead: get it from the
+**Other clients** tab at **[traderspy.app/mcp](https://traderspy.app/mcp)**. It starts with `mcp_`,
+the page can show it again, and it is revocable at any time.
 
 ### Claude Code
 
@@ -64,10 +68,18 @@ starts with `mcp_`, is shown once, and is revocable at any time. A free account 
 /plugin install traderspy@traderspy-mcp
 ```
 
-The plugin asks for your key when you enable it. Claude Code stores it in your keychain and sends it
-as a bearer token; it never lands in `settings.json` or in your repo.
+Then type `/mcp`, pick **traderspy** and choose **Authenticate**. Your browser opens the TraderSpy
+sign-in once; click **Allow access** and Claude Code keeps the token. Coming from 1.7.0 or earlier,
+which asked for a key at install? That key is no longer used: authenticate once the same way.
 
-**Or as a plain MCP server:**
+No browser on that machine (a server, CI)? Export your personal URL before starting Claude Code and
+the plugin connects with it instead:
+
+```bash
+export TRADERSPY_MCP_URL="https://mcp.traderspy.app/mcp?token=mcp_YOUR_KEY"
+```
+
+**Or as a plain MCP server**, then authenticate the same way from `/mcp`:
 
 ```bash
 claude mcp add --transport http traderspy https://mcp.traderspy.app/mcp
@@ -75,21 +87,30 @@ claude mcp add --transport http traderspy https://mcp.traderspy.app/mcp
 
 ### ChatGPT
 
-1. ChatGPT → **Settings → Connected Apps**
-2. **Add MCP Server**
-3. URL: `https://mcp.traderspy.app/mcp`
-4. Complete the OAuth login to link your TraderSpy account
+TraderSpy is in the ChatGPT plugin directory:
+
+1. Open [chatgpt.com/plugins](https://chatgpt.com/plugins) (or **Settings → Plugins**), search for
+   **TraderSpy** and click **Connect**
+2. Sign in with your TraderSpy account and click **Allow access**
+3. Pick TraderSpy in a chat with **@** or from the **+** menu
+
+Prefer your own connector? Turn on **Developer mode** at the bottom of **Settings → Plugins**, click
+**+** on the Plugins page, paste `https://mcp.traderspy.app/mcp` and choose **OAuth**.
 
 ### Grok (xAI)
 
-[grok.com/connectors](https://grok.com/connectors) → **New Connector → Custom**, then paste your
-personal URL — the key is embedded, so the host's authentication can stay on "None":
+[grok.com/connectors](https://grok.com/connectors) → **New Connector → Custom**, then paste
+`https://mcp.traderspy.app/mcp`. Grok opens the TraderSpy sign-in: sign in and click
+**Allow access**, and leave any client ID and secret fields empty.
+
+No sign-in appeared, or the tools don't answer? Paste your personal URL instead. The key is embedded,
+so the host's authentication can stay on "None":
 
 ```
 https://mcp.traderspy.app/mcp?token=mcp_YOUR_KEY
 ```
 
-From the terminal, Grok Build takes the same URL:
+Grok Build cannot open a sign-in window, so from the terminal it always takes the personal URL:
 
 ```bash
 grok mcp add --transport http traderspy "https://mcp.traderspy.app/mcp?token=mcp_YOUR_KEY"
@@ -100,8 +121,8 @@ and `.grok-plugin/mcp.json`; the xAI plugin marketplace listing is in review. Gr
 install-time prompt for secrets, so the plugin reads your key from `TRADERSPY_API_KEY` in the
 environment that launches `grok`.
 
-The same endpoint works as a remote MCP tool in the xAI API. Grok speaks Streamable HTTP and SSE —
-so does this server.
+The personal URL also works as a remote MCP tool in the xAI API. Grok speaks Streamable HTTP and
+SSE — so does this server.
 
 ### Cursor
 
@@ -158,16 +179,25 @@ gemini extensions install https://github.com/target1m/traderspy-mcp
 The extension (`gemini-extension.json`) adds the server and the six skills. It signs in with
 OAuth rather than a key: run `/mcp auth traderspy` once inside Gemini CLI.
 
+In the **Gemini app** (gemini.google.com or mobile): **Settings → Connected apps**, add a custom app,
+paste `https://mcp.traderspy.app/mcp` and sign in. Google offers custom apps only in the US, in
+English, on a personal Google account with Keep Activity on.
+
 ### Windsurf and other MCP clients
+
+The personal URL works in any client that takes an MCP server URL:
 
 ```json
 {
   "traderspy": {
     "type": "http",
-    "url": "https://mcp.traderspy.app/mcp"
+    "url": "https://mcp.traderspy.app/mcp?token=mcp_YOUR_KEY"
   }
 }
 ```
+
+A client that implements MCP authorization can take the bare URL instead: the server answers an
+unauthenticated tool call with `401` and a `WWW-Authenticate` header, which starts its sign-in.
 
 ---
 
@@ -284,14 +314,18 @@ place, close or move anything.
 
 Two ways to connect, both tied to your TraderSpy account:
 
-- **Personal URL (recommended)** — generate it at [traderspy.app/mcp](https://traderspy.app/mcp). The
-  key is embedded (`https://mcp.traderspy.app/mcp?token=mcp_...`), so hosts that ask for
-  authentication can be left on "None". Shown once, revocable any time.
-- **OAuth** — for clients that drive the flow themselves.
+- **Sign in (OAuth 2.1, recommended)** — Claude, Claude Code, ChatGPT, Grok and Gemini take the bare
+  URL and open the TraderSpy sign-in (dynamic client registration, PKCE, scope `mcp.read`). There is
+  nothing to copy, and the host renews its own token.
+- **Personal key** — for clients that cannot open a sign-in window. Get it from the **Other clients**
+  tab at [traderspy.app/mcp](https://traderspy.app/mcp) and send it as `Authorization: Bearer mcp_…`,
+  or embed it in the URL (`https://mcp.traderspy.app/mcp?token=mcp_...`) for hosts whose
+  authentication can only be "None".
 
-Treat the personal URL like a password: anyone holding it can spend your daily quota. If it leaks,
-revoke it on the same page and generate a new one — revocation takes effect on the very next call,
-and also invalidates any OAuth bearer issued for that account.
+Treat a personal URL like a password: anyone holding it can spend your daily quota. If it leaks,
+regenerate it on the same page and the old URL stops working at once. **Disconnect all apps** on the
+same page signs every connected assistant out, sign-ins and the personal key alike. Both take effect
+on the very next call.
 
 | Plan | Daily calls | Data |
 | --- | --- | --- |
@@ -311,9 +345,9 @@ This connector's security model is mostly a list of things that do not exist.
 
 | Scope | How you authenticate | What it can reach |
 | --- | --- | --- |
-| Anonymous | nothing | the tool catalogue only — `tools/list`, so directories can index it. Every actual call is refused |
-| Personal key | `mcp_…` as a bearer token or `?token=` | all public market data |
-| OAuth | host-driven flow | the same |
+| Anonymous | nothing | the tool catalogue only — `tools/list`, so directories can index it. Every actual call is refused. Claude, Claude Code and Grok get a `401` on their first request instead, which is what opens their sign-in |
+| OAuth | sign in from the host | all public market data |
+| Personal key | `mcp_…` as a bearer token or `?token=` | the same |
 
 **What no credential can do here:**
 
@@ -359,7 +393,7 @@ mcp.traderspy.app/mcp
        ├── 17 read-only tools       no order · no withdrawal · no account
        ├── 3 MCP Apps views         cards and charts where the host supports them
        ├── per-user daily quota     300 free · 5,000 premium
-       └── API key · OAuth · URL token
+       └── OAuth sign-in · personal key (header or URL)
        │
        ▼
 TraderSpy platform
@@ -412,6 +446,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-09-30 | The Claude Code plugin signs in with OAuth instead of asking for a key at install: `/mcp` → Authenticate once, and `TRADERSPY_MCP_URL` takes a personal URL for machines without a browser. Claude, ChatGPT, Grok and Gemini connect by signing in, and the personal key stays for Cursor, Cline, Grok Build and scripts. `server.json` no longer declares a required key header (v1.8.0) |
 | 2026-09-25 | `get_my_account` and its account view removed — TraderSpy offers no trading or balances, so the connector reads public market data only (17 tools). `position-check` works on positions the user describes (v1.7.0) |
 | 2026-09-25 | No skill sends the user to traderspy.app to execute: the decision and the trade stay with them (v1.6.3) |
 | 2026-09-25 | Skill copy matches the product as it is now: no copy-trading pointer in `smart-money`, no edge claim in `trading-signals` (v1.6.2) |
@@ -432,7 +467,7 @@ TraderSpy platform
 ## Links
 
 - **[TraderSpy](https://traderspy.app)** — the platform
-- **[traderspy.app/mcp](https://traderspy.app/mcp)** — generate your key, read the tutorial
+- **[traderspy.app/mcp](https://traderspy.app/mcp)** — connect your assistant, get a personal key for other clients, read the tutorial
 - **[Glama listing](https://glama.ai/mcp/connectors/app.traderspy/traderspy)** — independent inspection and tool grading
 - **[mcpi listing](https://mcpi.app/servers/traderspy)** — uptime, auth matrix and a classified contract changelog, probed every six hours
 - **[llms-install.md](llms-install.md)** — install walkthrough for AI agents
