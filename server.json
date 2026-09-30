@@ -22,24 +22,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://mcp.traderspy.app/mcp",
-      "headers": [
-        {
-          "name": "Authorization",
-          "description": "Personal TraderSpy MCP key. Generate one for free at https://traderspy.app/mcp",
-          "isRequired": true,
-          "isSecret": true,
-          "value": "Bearer {api_key}",
-          "variables": {
-            "api_key": {
-              "description": "TraderSpy MCP key, starts with mcp_",
-              "isRequired": true,
-              "isSecret": true,
-              "format": "string"
-            }
-          }
-        }
-      ]
+      "url": "https://mcp.traderspy.app/mcp"
     }
   ]
 }

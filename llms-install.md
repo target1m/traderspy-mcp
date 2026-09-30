@@ -15,14 +15,30 @@ https://mcp.traderspy.app/mcp
 Transport: Streamable HTTP. All 17 tools are read-only — the connector cannot place, close or modify
 an order, and no withdrawal or transfer tool exists.
 
+## Claude Code: sign in, no key
+
+If you are Claude Code, do not ask for a key. Add the server:
+
+```bash
+claude mcp add --transport http traderspy https://mcp.traderspy.app/mcp
+```
+
+Then ask the user to type `/mcp`, pick **traderspy** and choose **Authenticate**. Their browser opens
+the TraderSpy sign-in, they click **Allow access**, and Claude Code keeps the token. Claude, ChatGPT,
+Grok and Gemini connect the same way from their own connector settings.
+
+Everything below is for clients that cannot open a sign-in window: Cline, Cursor, Windsurf, scripts,
+or a machine with no browser.
+
 ## Step 1 — get the user's API key
 
-Every tool call requires a personal key. **Do not invent, guess or reuse a key from anywhere.** Ask
-the user to generate their own:
+These clients need a personal key. **Do not invent, guess or reuse a key from anywhere.** Ask the
+user to generate their own:
 
 1. Sign in at <https://traderspy.app> (a free account is enough).
-2. Open <https://traderspy.app/mcp>, or Settings → MCP.
-3. Generate the key. It starts with `mcp_` and is shown **once** — the user should copy it now.
+2. Open <https://traderspy.app/mcp>, **Other clients** tab (or Settings → MCP).
+3. Generate the key. It starts with `mcp_`. The user should copy it now; the page can show it again
+   later.
 
 Free accounts get 300 tool calls per day, premium 5,000.
 
@@ -95,6 +111,8 @@ Every tool declares an output schema, so structured results are typed.
 - **405 on connect** — `type` is not `streamableHttp`.
 - **`Authentication required` on every call** — missing/expired key. The user can revoke and
   regenerate at <https://traderspy.app/mcp>; revoking a key takes effect on the next call.
+- **Claude Code shows "Needs authentication"** — expected until the first sign-in: `/mcp` →
+  **traderspy** → **Authenticate**.
 - **Daily limit reached** — free tier is 300 calls/day. Wait for the reset or upgrade.
 - **Empty candles or indicators for a symbol** — that pair is not tracked; call
   `get_tracked_symbols` to see what is.
