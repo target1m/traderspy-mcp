@@ -59,6 +59,11 @@ there is no key to copy. A free account is enough. Clients that cannot open a si
 **Other clients** tab at **[traderspy.app/mcp](https://traderspy.app/mcp)**. It starts with `mcp_`,
 the page can show it again, and it is revocable at any time.
 
+### Claude (web, desktop and mobile)
+
+**Settings → Connectors → Add custom connector**, paste `https://mcp.traderspy.app/mcp`, then click
+**Connect** and sign in with your TraderSpy account. No key to paste.
+
 ### Claude Code
 
 **As a plugin** — also installs the six [skills](#skills):
@@ -94,8 +99,8 @@ TraderSpy is in the ChatGPT plugin directory:
 2. Sign in with your TraderSpy account and click **Allow access**
 3. Pick TraderSpy in a chat with **@** or from the **+** menu
 
-Prefer your own connector? Turn on **Developer mode** at the bottom of **Settings → Plugins**, click
-**+** on the Plugins page, paste `https://mcp.traderspy.app/mcp` and choose **OAuth**.
+Prefer your own connector? Turn on **Developer mode** in **Settings → Security and login**, then
+click **+** on the Plugins page, paste `https://mcp.traderspy.app/mcp` and choose **OAuth**.
 
 ### Grok (xAI)
 
@@ -197,7 +202,11 @@ The personal URL works in any client that takes an MCP server URL:
 ```
 
 A client that implements MCP authorization can take the bare URL instead: the server answers an
-unauthenticated tool call with `401` and a `WWW-Authenticate` header, which starts its sign-in.
+unauthenticated tool call with `401` and a `WWW-Authenticate` header, which starts its sign-in. That
+works when the client's OAuth callback is a loopback address (`http://localhost:<port>`,
+`http://127.0.0.1:<port>`) or one of the hosts above. Custom-scheme callbacks (`cursor://`,
+`vscode://`) and other web callbacks are refused at registration, so those clients use the personal
+URL.
 
 ---
 
@@ -446,6 +455,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-10-01 | README: Claude (web, desktop and mobile) setup, ChatGPT's Developer mode lives in **Settings → Security and login**, and which OAuth callbacks the server accepts (loopback or the listed hosts; custom schemes use the personal URL) |
 | 2026-09-30 | The Claude Code plugin signs in with OAuth instead of asking for a key at install: `/mcp` → Authenticate once, and `TRADERSPY_MCP_URL` takes a personal URL for machines without a browser. Claude, ChatGPT, Grok and Gemini connect by signing in, and the personal key stays for Cursor, Cline, Grok Build and scripts. `server.json` no longer declares a required key header (v1.8.0) |
 | 2026-09-25 | `get_my_account` and its account view removed — TraderSpy offers no trading or balances, so the connector reads public market data only (17 tools). `position-check` works on positions the user describes (v1.7.0) |
 | 2026-09-25 | No skill sends the user to traderspy.app to execute: the decision and the trade stay with them (v1.6.3) |
