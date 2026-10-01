@@ -3,7 +3,7 @@
   "name": "app.traderspy/traderspy",
   "title": "TraderSpy",
   "description": "AI crypto signals, whale positions, 19 technical indicators, derivatives, screener and backtests",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "websiteUrl": "https://traderspy.app/mcp",
   "repository": {
     "url": "https://github.com/target1m/traderspy-mcp",
