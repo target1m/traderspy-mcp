@@ -24,15 +24,16 @@ Map the symbol to Binance naming for the data tools: `BTC` → `BTCUSDT`, `kPEPE
 ## Calls per position (keep it to what matters)
 
 1. `get_technical_indicators` — `intervals: ["1h","4h","1d"]`, `indicators: ["rsi","macd","ema",
-   "atr","adx","supertrend","levels"]`. One call. This gives the trend on three timeframes, ATR
-   for stop sanity and the nearest levels.
+   "atr","adx","supertrend","levels"]`, and the coins as `symbols` (up to three in ONE call; each
+   coin's read is its own entry in `data[]`). This gives the trend on three timeframes, ATR for
+   stop sanity and the nearest levels.
 2. `get_derivatives` — up to five coins in ONE call for all positions at once. Funding is a cost
    or an income for this position; the OI regime says whether the move is being funded.
 3. `get_positions` — `symbol`, `status: "open"`, `limit: 20`. Optional; skip on a tight quota.
    Tells you whether tracked top traders are on the same side.
 
-Three positions ≈ 3 + 1 (+3) calls. If the quota is tight, do derivatives for all coins first,
-then technicals for the position with the smallest liquidation distance.
+Three positions ≈ 1 + 1 (+3) calls. If the quota is tight, skip step 3: technicals and
+derivatives for every position are still two calls.
 
 ## The math (show it, briefly)
 

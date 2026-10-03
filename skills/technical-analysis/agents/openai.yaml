@@ -1,6 +1,6 @@
 interface:
   display_name: "Technical Analysis"
-  short_description: "Multi-timeframe indicator read, key levels, funding and open interest for one coin"
+  short_description: "Multi-timeframe indicator read, key levels, funding and open interest for up to three coins"
   default_prompt: "Analyse BTC on the 1h, 4h and 1d with funding and open interest"
 
 policy:

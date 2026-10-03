@@ -100,6 +100,11 @@ How to read it honestly:
 call) `backtest_condition` the same condition on the top match so the answer carries "and here is
 what that has meant on this coin before".
 
+**Screen, then dig in** → a screener row already carries bias, trend, RSI, ADX and ATR% on one
+timeframe. When the user wants more on the best matches (levels, VWAP, the 1h/4h/1d picture), pass
+the top three as `symbols` to ONE `get_technical_indicators` call (technical-analysis) — never one
+call per coin.
+
 **"Find me setups" / "watchlist"** → decide the archetype with the user in one line (mean-reversion
 vs trend-continuation vs breakout), run one scan per archetype (2–3 calls), and present each list
 with the conditions it was built from. Do not promise an outcome for any row.

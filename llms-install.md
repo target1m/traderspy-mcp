@@ -100,7 +100,7 @@ Reload the MCP servers, then confirm two things:
 | `get_candles` | OHLCV candles |
 | `get_tracked_symbols` | Every tracked pair |
 | `get_derivatives` | Funding rate, open interest (24h/4h change + OI×price regime), top-trader/all-account long-short ratios, taker flow — up to 5 Binance perpetuals |
-| `get_technical_indicators` | 19 indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance); up to 3 timeframes per call, custom periods, previous-bar direction, summary |
+| `get_technical_indicators` | 19 indicators (RSI, MACD, EMA, SMA, Bollinger Bands, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner Channels, pivot points, swing support/resistance); up to 3 timeframes and 3 symbols per call, custom periods, previous-bar direction, summary |
 | `screen_symbols` | Scan the most-traded pairs (≤ 100, ranked by 24h volume) or an explicit list for up to 3 AND-ed conditions — `{metric, op, value, period?, period2?}` over `rsi`, `stochastic`, `cci`, `mfi`, `williamsR`, `adx`, `roc`, `macdHistogram`, `atrPct`, `volumeRatio`, `bbPercentB`, `bbWidthPct`, `priceVsEma`, `emaSpread`, `supertrend`, `changePct`, `price` with `lt` / `gt` / `crossAbove` / `crossBelow`; one quota unit. No conditions + `symbols` = comparison table |
 | `backtest_condition` | Event study on one symbol/timeframe: occurrences of the conditions over the stored tape (≤ 1000 candles), forward return / win rate / best-worst excursion per horizon, the unconditional baseline and the edge over it, the last five episodes, and whether the condition is active now |
 

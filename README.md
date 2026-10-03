@@ -218,7 +218,7 @@ The server publishes this routing to the model itself, so you rarely have to nam
 | --- | --- |
 | Price, 24h change, volume | `get_price` — several symbols in one call |
 | OHLCV for charting | `get_candles` |
-| "Analyse X", oversold, trend, support/resistance | `get_technical_indicators` — up to 3 timeframes per call |
+| "Analyse X", oversold, trend, support/resistance | `get_technical_indicators` — up to 3 timeframes and 3 coins per call |
 | Funding, open interest, long/short, taker flow | `get_derivatives` |
 | "Which coins are…", "find setups", "compare A B C" | `screen_symbols` |
 | "What usually happens after…" | `backtest_condition` |
@@ -227,9 +227,9 @@ The server publishes this routing to the model itself, so you rarely have to nam
 | Coverage and venue context | `get_tracked_symbols` · `get_exchanges` · `get_market_stats` |
 
 **Batch, don't loop.** Calls are metered per day, and the tools are built so one call replaces many:
-several symbols in a single `get_price`, three timeframes in a single `get_technical_indicators`
-(one quota unit, and you get the confluence across them), and `screen_symbols` instead of running
-indicators symbol by symbol.
+several symbols in a single `get_price`, three timeframes and three coins in a single
+`get_technical_indicators` (one quota unit, and you get the confluence across the timeframes), and
+`screen_symbols` instead of running indicators symbol by symbol.
 
 ---
 
@@ -263,7 +263,7 @@ indicators symbol by symbol.
 | --- | --- |
 | `get_price` | Real-time price, 24h high/low, volume and change% — one or many symbols |
 | `get_candles` | OHLCV for `1m`, `5m`, `15m`, `1h`, `4h`, `1d` |
-| `get_technical_indicators` | 19 indicators — RSI, MACD, EMA, SMA, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner, pivots, swing S/R. Each carries value + previous bar + direction + a history series. Multi-timeframe (`intervals`, ≤ 3) with a per-timeframe `summary` and a cross-timeframe `confluence`; custom `periods`; RSI/MACD divergence, Fibonacci retracement, volume profile, ATR percentile, TTM squeeze and candlestick patterns |
+| `get_technical_indicators` | 19 indicators — RSI, MACD, EMA, SMA, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner, pivots, swing S/R. Each carries value + previous bar + direction + a history series. Multi-timeframe (`intervals`, ≤ 3) with a per-timeframe `summary` and a cross-timeframe `confluence`; several coins in one call (`symbols`, ≤ 3, one entry per coin); custom `periods`; RSI/MACD divergence, Fibonacci retracement, volume profile, ATR percentile, TTM squeeze and candlestick patterns |
 | `get_derivatives` | Funding (current, 24h/3d average, annualised), open interest (24h/4h change, OI×price regime), top-trader and all-account long/short ratios, taker flow — up to 5 Binance perpetuals, with the interpretation traders actually quote |
 | `screen_symbols` | Scan the most-traded pairs (≤ 100, ranked by 24h volume) or an explicit list, for up to 3 AND-ed conditions over 17 metrics — `rsi`, `stochastic`, `cci`, `mfi`, `williamsR`, `adx`, `roc`, `macdHistogram`, `atrPct`, `volumeRatio`, `bbPercentB`, `bbWidthPct`, `priceVsEma`, `emaSpread`, `supertrend`, `changePct`, `price` — with `lt` / `gt` / `crossAbove` / `crossBelow`. One quota unit. Drop the conditions and pass `symbols` to get a comparison table instead |
 | `backtest_condition` | Event study on one symbol and timeframe: every occurrence over the stored tape (≤ 1000 candles), forward return / win rate / best and worst excursion per horizon, the unconditional baseline and the **edge over it**, the last five episodes, and whether the condition is live right now |
@@ -281,7 +281,7 @@ its own, because the data arrives inside the tool result.
 | --- | --- |
 | `get_signals` | A card carousel — each card charts 24h of price with the entry, the next unreached take-profit and the stop drawn across it. Pages through the full result set, it never shows a silent slice |
 | `get_signal_details` | One signal: chart with a price scale, the live price, entry / exit / level-hit markers judged on wicks, every level as an absolute price, the realised outcome and the validation meters |
-| `get_technical_indicators` | Per timeframe a 96-bar chart with EMA lines, the SuperTrend band and swing / pivot support-resistance drawn across it, the summary's notes, one chip per indicator and a levels table. Several timeframes become tabs; footer buttons re-run the tool for 1h / 4h / 1d |
+| `get_technical_indicators` | Per timeframe a 96-bar chart with EMA lines, the SuperTrend band and swing / pivot support-resistance drawn across it, the summary's notes, one chip per indicator and a levels table. Several timeframes become tabs, and so do several coins; footer buttons re-run the tool for 1h / 4h / 1d |
 
 Verified on claude.ai web with the deployed connector. Hosts without MCP Apps get the same data as text and structured
 content — nothing degrades.
@@ -341,7 +341,7 @@ on the very next call.
 | Free | 300 | Real-time, except top-trader position rows (15-minute delay) |
 | Premium | 5,000 | Real-time |
 
-A multi-timeframe `get_technical_indicators` and a 100-symbol `screen_symbols` each cost **one** call,
+A three-coin, three-timeframe `get_technical_indicators` and a 100-symbol `screen_symbols` each cost **one** call,
 deliberately — the cheap way to use the connector is also the fast one.
 
 Don't have an account? **[Sign up free](https://traderspy.app)**.
@@ -455,6 +455,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-10-03 | `get_technical_indicators` takes `symbols` — up to three coins in one call, one quota unit, one entry per coin. `technical-analysis`, `market-screener` and `position-check` read several coins with it instead of one call per coin; registry entry 3.0.2 (v1.9.0) |
 | 2026-10-01 | Registry entry `app.traderspy/traderspy` 3.0.1 published without the key header (3.0.0 keeps it: registry versions are immutable); `server.json` here follows |
 | 2026-10-01 | README: Claude (web, desktop and mobile) setup, ChatGPT's Developer mode lives in **Settings → Security and login**, and which OAuth callbacks the server accepts (loopback or the listed hosts; custom schemes use the personal URL) |
 | 2026-09-30 | The Claude Code plugin signs in with OAuth instead of asking for a key at install: `/mcp` → Authenticate once, and `TRADERSPY_MCP_URL` takes a personal URL for machines without a browser. Claude, ChatGPT, Grok and Gemini connect by signing in, and the personal key stays for Cursor, Cline, Grok Build and scripts. `server.json` no longer declares a required key header (v1.8.0) |

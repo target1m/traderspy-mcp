@@ -1,6 +1,6 @@
 ---
 name: technical-analysis
-description: Read one crypto futures pair (or a few) properly with TraderSpy — 19 indicators (RSI, MACD, EMA/SMA stacks, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner), pivot points and swing support/resistance, Fibonacci and volume profile, RSI/MACD divergence, squeezes and candle patterns, up to three timeframes in ONE call with a confluence verdict — plus funding rate, open interest and long/short positioning, live price and OHLCV candles. Use this whenever the user asks about a coin's chart, trend, momentum, "is X overbought / oversold", support and resistance, where the 200 EMA is, "analyse BTC", "how does SOL look", "what do the indicators say", "is this a good entry", whether funding is high or open interest is building, or wants price / candle data — even if they only name a coin and ask how it looks. For scanning MANY coins by conditions use market-screener; for whale positions use smart-money.
+description: Read one crypto futures pair (or a few) properly with TraderSpy — 19 indicators (RSI, MACD, EMA/SMA stacks, Bollinger, ATR, ADX, Stochastic, OBV, VWAP, CCI, MFI, Williams %R, ROC, SuperTrend, Ichimoku, Keltner), pivot points and swing support/resistance, Fibonacci and volume profile, RSI/MACD divergence, squeezes and candle patterns, up to three timeframes and up to three coins in ONE call with a confluence verdict — plus funding rate, open interest and long/short positioning, live price and OHLCV candles. Use this whenever the user asks about a coin's chart, trend, momentum, "is X overbought / oversold", support and resistance, where the 200 EMA is, "analyse BTC", "how does SOL look", "what do the indicators say", "is this a good entry", whether funding is high or open interest is building, or wants price / candle data — even if they only name a coin and ask how it looks. For scanning MANY coins by conditions use market-screener; for whale positions use smart-money.
 ---
 
 One good read of a chart is three things in order: where price is in its structure (trend and
@@ -12,7 +12,7 @@ is finite — and quote the numbers, not adjectives.
 
 | Tool | Use it for | Key arguments |
 | --- | --- | --- |
-| `get_technical_indicators` | The chart read | `symbol`, `intervals` (≤ 3) or `interval`, `indicators` (≤ 19), `periods`, `history` 0–20 |
+| `get_technical_indicators` | The chart read | `symbol` or `symbols` (≤ 3), `intervals` (≤ 3) or `interval`, `indicators` (≤ 19), `periods`, `history` 0–20 |
 | `get_derivatives` | Funding, open interest, positioning | `symbols` (≤ 5 Binance USDⓈ-M perps; bare `BTC` is fine) |
 | `get_price` | Live price, 24h high/low/volume/change | `symbols` (≤ 20) |
 | `get_candles` | Raw OHLCV | `symbol`, `interval` 1m/5m/15m/1h/4h/1d, `limit` ≤ 500 |
@@ -27,6 +27,11 @@ Hyperliquid-only perps (e.g. HYPE) are tracked under the same naming.
 - **Multi-timeframe is one quota unit.** For any "how does X look" question pass
   `intervals: ["1h","4h","1d"]` (or `["15m","1h","4h"]` for an intraday user) and get a
   `confluence` verdict — never three separate calls.
+- **Several coins are one quota unit too.** "How do BTC, ETH and SOL look" or a deeper read of a
+  screen's top matches → `symbols: ["BTCUSDT","ETHUSDT","SOLUSDT"]` in ONE call, with the same
+  `intervals` and `indicators` for all of them — never one call per coin. Up to three coins per
+  call; for more, one call per three. For a quick side-by-side of many coins on one timeframe,
+  `screen_symbols` (market-screener) is the better tool.
 - **Pick indicators for the question.** Default `rsi, macd, ema, bollinger` covers momentum and
   trend. Add `levels` + `pivots` whenever the user cares about entries, targets or "where is
   support"; `atr` for stop distance and volatility; `adx` for trend strength; `supertrend` for a
@@ -45,7 +50,10 @@ Hyperliquid-only perps (e.g. HYPE) are tracked under the same naming.
 **Shape.** One timeframe → top-level `indicators` + `summary`. Several → `timeframes[]` (each
 with `interval`, `price`, `candles`, `indicators`, `summary`) plus `confluence` `{ aligned, bias,
 byInterval }`; the top-level `interval`/`price` then name the first timeframe only. `settings`
-echoes what was computed; `warnings[]` lists anything that was thinned or missing.
+echoes what was computed; `warnings[]` lists anything that was thinned or missing. A `symbols`
+call returns `data[]` instead: one entry per coin, in the order you asked, each exactly the
+single-coin shape just described. A coin with no stored candles comes back as `{ symbol, error:
+"no_data", message }` while the others still answer — say it was not available, do not drop it.
 
 **Every indicator** carries `value`, `previous`, `direction` (rising / falling / flat) and a short
 `series` (oldest → newest), plus its own fields — `zone` on RSI/Stochastic/CCI/MFI/Williams,
@@ -97,6 +105,10 @@ For a single-coin read ALWAYS use this order, and keep it to what the user asked
 6. **What would change the read** — the one or two levels or readings that flip the picture
    (e.g. "a 4h close above 79,325 resistance with OI rising would turn the 4h bias bullish").
 7. One plain sentence: crypto derivatives are high-risk; this is market information, not advice.
+
+For several coins, give each coin steps 1–4 in short form, then one line comparing them (which
+are aligned, which disagree across timeframes, which sit closest to a level), and the risk
+sentence once at the end.
 
 Use `RSI(14) 41.3 — neutral, falling` style labelling so the period and the direction are always
 visible. Percentages to one decimal; prices to the precision the tool returned.
