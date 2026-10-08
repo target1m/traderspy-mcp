@@ -8,11 +8,11 @@ Ready-made `conditions` arrays for the intents users actually voice. Combine at 
 | --- | --- |
 | Oversold | `[{"metric":"rsi","op":"lt","value":30}]` |
 | Oversold, wider net | `[{"metric":"rsi","op":"lt","value":35}]` |
-| Deeply oversold (outside lower band) | `[{"metric":"rsi","op":"lt","value":30},{"metric":"bbPercentB","op":"lt","value":0}]` |
-| Oversold in an uptrend (pullback) | `[{"metric":"rsi","op":"lt","value":40},{"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
+| Deeply oversold (outside lower band) | `[{"metric":"rsi","op":"lt","value":30}, {"metric":"bbPercentB","op":"lt","value":0}]` |
+| Oversold in an uptrend (pullback) | `[{"metric":"rsi","op":"lt","value":40}, {"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
 | Overbought | `[{"metric":"rsi","op":"gt","value":70}]` |
-| Overbought and stretched | `[{"metric":"rsi","op":"gt","value":70},{"metric":"bbPercentB","op":"gt","value":1}]` |
-| Washed out on volume | `[{"metric":"williamsR","op":"lt","value":-90},{"metric":"volumeRatio","op":"gt","value":2}]` |
+| Overbought and stretched | `[{"metric":"rsi","op":"gt","value":70}, {"metric":"bbPercentB","op":"gt","value":1}]` |
+| Washed out on volume | `[{"metric":"williamsR","op":"lt","value":-90}, {"metric":"volumeRatio","op":"gt","value":2}]` |
 | Dumped 5%+ in a day (on 1h) | `[{"metric":"changePct","op":"lt","value":-5,"period":24}]` |
 | Dumped 5%+ in a day (on 4h) | `[{"metric":"changePct","op":"lt","value":-5,"period":6}]` |
 
@@ -21,13 +21,13 @@ Ready-made `conditions` arrays for the intents users actually voice. Combine at 
 | Intent | Conditions |
 | --- | --- |
 | Above the 200 EMA | `[{"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
-| Strong uptrend | `[{"metric":"priceVsEma","op":"gt","value":0,"period":200},{"metric":"adx","op":"gt","value":25},{"metric":"supertrend","op":"gt","value":0}]` |
-| Strong downtrend | `[{"metric":"priceVsEma","op":"lt","value":0,"period":200},{"metric":"adx","op":"gt","value":25},{"metric":"supertrend","op":"lt","value":0}]` |
+| Strong uptrend | `[{"metric":"priceVsEma","op":"gt","value":0,"period":200}, {"metric":"adx","op":"gt","value":25}, {"metric":"supertrend","op":"gt","value":0}]` |
+| Strong downtrend | `[{"metric":"priceVsEma","op":"lt","value":0,"period":200}, {"metric":"adx","op":"gt","value":25}, {"metric":"supertrend","op":"lt","value":0}]` |
 | Golden cross (event) | `[{"metric":"emaSpread","op":"crossAbove","value":0,"period":50,"period2":200}]` |
 | Death cross (event) | `[{"metric":"emaSpread","op":"crossBelow","value":0,"period":50,"period2":200}]` |
 | Fast EMA stack turning up | `[{"metric":"emaSpread","op":"crossAbove","value":0,"period":9,"period2":21}]` |
 | SuperTrend just flipped up | `[{"metric":"supertrend","op":"crossAbove","value":0}]` |
-| Pullback to the 50 EMA in an uptrend | `[{"metric":"priceVsEma","op":"lt","value":1,"period":50},{"metric":"priceVsEma","op":"gt","value":-1,"period":50},{"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
+| Pullback to the 50 EMA in an uptrend | `[{"metric":"priceVsEma","op":"lt","value":1,"period":50}, {"metric":"priceVsEma","op":"gt","value":-1,"period":50}, {"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
 
 ## Momentum
 
@@ -35,9 +35,9 @@ Ready-made `conditions` arrays for the intents users actually voice. Combine at 
 | --- | --- |
 | MACD bullish cross (event) | `[{"metric":"macdHistogram","op":"crossAbove","value":0}]` |
 | MACD bearish cross (event) | `[{"metric":"macdHistogram","op":"crossBelow","value":0}]` |
-| Momentum burst | `[{"metric":"roc","op":"gt","value":5},{"metric":"volumeRatio","op":"gt","value":1.5}]` |
+| Momentum burst | `[{"metric":"roc","op":"gt","value":5}, {"metric":"volumeRatio","op":"gt","value":1.5}]` |
 | Stochastic oversold cross up (event) | `[{"metric":"stochastic","op":"crossAbove","value":20}]` |
-| Money flow drying up in an uptrend (divergence hint) | `[{"metric":"mfi","op":"lt","value":40},{"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
+| Money flow drying up in an uptrend (divergence hint) | `[{"metric":"mfi","op":"lt","value":40}, {"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
 
 ## Volatility
 
@@ -53,7 +53,7 @@ Ready-made `conditions` arrays for the intents users actually voice. Combine at 
 
 | Intent | Conditions |
 | --- | --- |
-| Sub-dollar coins in an uptrend | `[{"metric":"price","op":"lt","value":1},{"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
+| Sub-dollar coins in an uptrend | `[{"metric":"price","op":"lt","value":1}, {"metric":"priceVsEma","op":"gt","value":0,"period":200}]` |
 
 ## Backtest pairings that read well
 
