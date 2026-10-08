@@ -455,7 +455,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
-| 2026-10-08 | Claude plugin manifest carries a listing icon (`.claude-plugin/icon.png`) and the privacy policy URL; the archived launch article and its image left the repo (they live in git history); the condition cookbook's JSON examples are spaced so long ones wrap (v1.9.1) |
+| 2026-10-08 | Claude plugin manifest carries a listing icon and the privacy policy URL; the archived launch article and its image left the repo (they live in git history); the condition cookbook's JSON examples are spaced so long ones wrap (v1.9.1) |
 | 2026-10-03 | `get_technical_indicators` takes `symbols` — up to three coins in one call, one quota unit, one entry per coin. `technical-analysis`, `market-screener` and `position-check` read several coins with it instead of one call per coin; registry entry 3.0.2 (v1.9.0) |
 | 2026-10-01 | Registry entry `app.traderspy/traderspy` 3.0.1 published without the key header (3.0.0 keeps it: registry versions are immutable); `server.json` here follows |
 | 2026-10-01 | README: Claude (web, desktop and mobile) setup, ChatGPT's Developer mode lives in **Settings → Security and login**, and which OAuth callbacks the server accepts (loopback or the listed hosts; custom schemes use the personal URL) |
