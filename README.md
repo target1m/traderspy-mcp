@@ -409,7 +409,7 @@ content — nothing degrades.
 The plugin ships six skills: playbooks that tell the assistant which tools answer which question,
 how to read the fields, and how to present the result without turning market data into advice. They
 live in `skills/<name>/SKILL.md` (Agent Skills format) and load automatically in Claude Code,
-Cursor, Grok Build, Gemini CLI, Kimi Code and GitHub Copilot CLI. For the ChatGPT plugin portal,
+Cursor, Grok Build, Gemini CLI, Kimi Code, GitHub Copilot CLI and Codex. For the ChatGPT plugin portal,
 run `scripts/package-skills.sh` and upload the ZIPs from `dist/skills/`.
 
 Any other Agent Skills client can install them with the [skills](https://skills.sh) CLI. The
@@ -571,6 +571,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-10-09 | Codex plugin manifest: `.codex-plugin/plugin.json` with its own keyless `mcp.json` (Codex signs in with OAuth) and the six skills; `SECURITY.md` says how to report a vulnerability (v1.11.0) |
 | 2026-10-09 | Plugins for Kimi Code (`.kimi-plugin/plugin.json`) and GitHub Copilot CLI (`.github/plugin/plugin.json`): both connect to the hosted server without a key (OAuth sign-in) and load the six skills. README setup for Kimi Code, OpenCode, GitHub Copilot CLI and goose (v1.10.0) |
 | 2026-10-08 | Claude plugin manifest carries a listing icon and the privacy policy URL; the archived launch article and its image left the repo (they live in git history); the condition cookbook's JSON examples are spaced so long ones wrap (v1.9.1) |
 | 2026-10-03 | `get_technical_indicators` takes `symbols` — up to three coins in one call, one quota unit, one entry per coin. `technical-analysis`, `market-screener` and `position-check` read several coins with it instead of one call per coin; registry entry 3.0.2 (v1.9.0) |

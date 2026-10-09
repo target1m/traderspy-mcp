@@ -1,7 +1,7 @@
 {
   "name": "traderspy",
   "description": "Read-only crypto futures market research for GitHub Copilot CLI: AI-generated signals, smart-money positions across Binance, Hyperliquid, Bybit and OKX, 19 technical indicators, funding and open interest, a market screener and a backtester, plus six playbook skills. No order, transfer or withdrawal tool. Market data and analysis, not financial advice.",
-  "version": "1.10.0",
+  "version": "1.11.0",
   "author": {
     "name": "TraderSpy",
     "email": "support@traderspy.app",

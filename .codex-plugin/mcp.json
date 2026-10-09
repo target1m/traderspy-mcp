@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "traderspy": {
+      "type": "http",
+      "url": "https://mcp.traderspy.app/mcp"
+    }
+  }
+}

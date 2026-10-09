@@ -1,0 +1,47 @@
+{
+  "name": "traderspy",
+  "version": "1.11.0",
+  "description": "Read-only crypto futures market data for Codex through TraderSpy's hosted MCP server: AI-generated signals, top-trader positions on Hyperliquid, Binance, Bybit and OKX, 19 technical indicators, funding and open interest, a screener and event-study backtests. Includes six skills. No order, transfer or withdrawal tools. Market data and analysis, not financial advice.",
+  "author": {
+    "name": "TraderSpy",
+    "email": "support@traderspy.app",
+    "url": "https://traderspy.app"
+  },
+  "homepage": "https://traderspy.app/mcp",
+  "repository": "https://github.com/target1m/traderspy-mcp",
+  "license": "MIT",
+  "keywords": [
+    "crypto",
+    "trading",
+    "market-data",
+    "technical-analysis",
+    "smart-money",
+    "hyperliquid",
+    "binance",
+    "mcp"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.codex-plugin/mcp.json",
+  "interface": {
+    "displayName": "TraderSpy",
+    "shortDescription": "Crypto futures signals, whale positions and indicators, read-only",
+    "longDescription": "Ask about the crypto futures market and get answers from TraderSpy's live data: AI-generated signals with entry, take-profit and stop levels; what top traders on Hyperliquid, Binance, Bybit and OKX are holding; prices, candles and 19 technical indicators across up to three timeframes; funding rate and open interest; a market screener and an event-study backtester. Sign in with a free TraderSpy account. Every tool is read-only: it cannot place, close or modify an order and has no transfer or withdrawal tool. Market data and analysis, not financial advice.",
+    "developerName": "Target1M",
+    "category": "Finance",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Which coins are the top Hyperliquid traders long right now?",
+      "Which coins are oversold on the 4h right now?",
+      "Give me RSI, MACD and ATR for BTC on 1h, 4h and 1d. Do the timeframes agree?"
+    ],
+    "logo": "./logo-400.png",
+    "composerIcon": "./logo-400.png",
+    "brandColor": "#0c0c0e",
+    "websiteURL": "https://traderspy.app/mcp",
+    "privacyPolicyURL": "https://traderspy.app/privacy-policy",
+    "termsOfServiceURL": "https://traderspy.app/terms-of-use",
+    "supportURL": "mailto:support@traderspy.app"
+  }
+}
