@@ -1,0 +1,34 @@
+{
+  "name": "traderspy",
+  "version": "1.10.0",
+  "description": "Live crypto futures data for Kimi Code: AI trading signals, whale positions across Binance, Hyperliquid, Bybit and OKX, 19 technical indicators, funding and open interest, a market screener and a backtester. Read-only — no order, transfer or withdrawal tools.",
+  "author": {
+    "name": "TraderSpy",
+    "email": "support@traderspy.app",
+    "url": "https://traderspy.app"
+  },
+  "homepage": "https://traderspy.app/mcp",
+  "repository": "https://github.com/target1m/traderspy-mcp",
+  "license": "MIT",
+  "keywords": [
+    "traderspy",
+    "trader spy",
+    "traderspy signals",
+    "traderspy smart money"
+  ],
+  "skills": "./skills/",
+  "mcpServers": {
+    "traderspy": {
+      "transport": "http",
+      "url": "https://mcp.traderspy.app/mcp"
+    }
+  },
+  "skillInstructions": "Kimi Code notes for TraderSpy skills:\n\n- The tools these skills name (get_price, get_technical_indicators, screen_symbols and the rest) come from this plugin's TraderSpy MCP server. Call them by the names Kimi Code exposes for that server.\n- Every TraderSpy tool is read-only. No tool can place, close or modify an order, and there is no transfer or withdrawal tool. If the user wants to act, say so plainly and leave the trade to them.\n- If a TraderSpy tool fails with an authentication error, ask the user to run the /mcp-config login command shown in the error (a free TraderSpy account is enough), then /reload.\n- Market data and analysis, not financial advice.",
+  "interface": {
+    "displayName": "TraderSpy",
+    "shortDescription": "Read-only crypto futures research: AI signals, whale positions, indicators",
+    "longDescription": "TraderSpy connects Kimi Code to live crypto futures market data through its hosted MCP server: AI-generated trading signals with entry, take-profit and stop levels; smart-money positions on Binance, Hyperliquid, Bybit and OKX; prices, candles and 19 technical indicators over up to three timeframes; funding rate and open interest; a market screener; and event-study backtests of a condition. Six skills (market-briefing, technical-analysis, market-screener, trading-signals, smart-money, position-check) tell the agent which tool answers which question.\n\nEvery tool is read-only. There is no order, transfer or withdrawal tool, and the plugin cannot see any exchange account.\n\nThe first tool call asks you to sign in with a TraderSpy account (/mcp-config login). A free account allows 300 tool calls a day.\n\nMarket data and analysis, not financial advice.",
+    "developerName": "TraderSpy",
+    "websiteURL": "https://traderspy.app/mcp"
+  }
+}

@@ -188,6 +188,122 @@ In the **Gemini app** (gemini.google.com or mobile): **Settings → Connected ap
 paste `https://mcp.traderspy.app/mcp` and sign in. Google offers custom apps only in the US, in
 English, on a personal Google account with Keep Activity on.
 
+### Kimi Code
+
+**As a plugin** — also installs the six [skills](#skills). In Kimi Code:
+
+```
+/plugins install https://github.com/target1m/traderspy-mcp
+/reload
+```
+
+The repo carries `.kimi-plugin/plugin.json`, and Kimi Code installs the latest release. The first
+TraderSpy tool call asks you to sign in: run the `/mcp-config login …` command Kimi Code prints,
+sign in with your TraderSpy account in the browser and click **Allow access**, then `/reload`.
+
+**Or as a plain MCP server** — `~/.kimi-code/mcp.json`, then sign in the same way:
+
+```json
+{
+  "mcpServers": {
+    "traderspy": {
+      "url": "https://mcp.traderspy.app/mcp"
+    }
+  }
+}
+```
+
+No browser on that machine? Keep the key out of the file: export it and point Kimi Code at the
+variable with `bearerTokenEnvVar`.
+
+```json
+{
+  "mcpServers": {
+    "traderspy": {
+      "url": "https://mcp.traderspy.app/mcp",
+      "bearerTokenEnvVar": "TRADERSPY_API_KEY"
+    }
+  }
+}
+```
+
+### OpenCode
+
+Add the server to `opencode.json` (project) or `~/.config/opencode/opencode.json` (global):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "traderspy": {
+      "type": "remote",
+      "url": "https://mcp.traderspy.app/mcp"
+    }
+  }
+}
+```
+
+Then run `opencode mcp auth traderspy`. Your browser opens the TraderSpy sign-in once. Click
+**Allow access** and OpenCode stores the token.
+
+No browser on that machine? Turn off OAuth detection and send your personal key from the
+environment:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "traderspy": {
+      "type": "remote",
+      "url": "https://mcp.traderspy.app/mcp",
+      "oauth": false,
+      "headers": {
+        "Authorization": "Bearer {env:TRADERSPY_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+OpenCode also loads skills from `.agents/skills/` and `.claude/skills/`, so the six skills installed
+with the [skills](#skills) CLI work in OpenCode too.
+
+### GitHub Copilot CLI
+
+**As a plugin**, which also installs the six [skills](#skills):
+
+```bash
+copilot plugin install target1m/traderspy-mcp
+```
+
+The plugin manifest is `.github/plugin/plugin.json`. It points Copilot CLI at
+`https://mcp.traderspy.app/mcp` with no key: Copilot CLI signs in with your TraderSpy account (OAuth)
+in the browser, and `/mcp auth traderspy` opens the sign-in again. Copilot CLI passes a plugin's
+remote server settings through literally, so a key cannot come from an environment variable here.
+
+No browser on that machine? Skip the plugin and add the server with your personal key under its own
+name:
+
+```bash
+copilot mcp add --transport http --header "Authorization: Bearer mcp_YOUR_KEY" \
+  traderspy-key https://mcp.traderspy.app/mcp
+```
+
+### goose
+
+**Desktop:** [Add TraderSpy to goose](https://goose-docs.ai/extension?type=streamable_http&url=https%3A%2F%2Fmcp.traderspy.app%2Fmcp&id=traderspy&name=TraderSpy&description=Read-only%20crypto%20futures%20market%20research%3A%20AI%20signals%2C%20whale%20positions%2C%20indicators%2C%20screener%20and%20backtests.%20No%20order%2C%20transfer%20or%20withdrawal%20tool.%20Market%20data%20and%20analysis%2C%20not%20financial%20advice.)
+opens goose and adds the extension. Start a new chat. On the first tool call goose opens the TraderSpy sign-in in your
+browser; click **Allow access**. There is no key to paste.
+
+**CLI:** run `goose configure`, choose **Add Extension** → **Remote Extension (Streamable HTTP)**, name it `traderspy`
+and enter `https://mcp.traderspy.app/mcp`. Add no headers. For one session only:
+
+```bash
+goose session --with-streamable-http-extension "https://mcp.traderspy.app/mcp"
+```
+
+Every tool is read-only: there is no order, transfer or withdrawal tool. Market data and analysis, not financial advice.
+
 ### Windsurf and other MCP clients
 
 The personal URL works in any client that takes an MCP server URL:
@@ -293,8 +409,8 @@ content — nothing degrades.
 The plugin ships six skills: playbooks that tell the assistant which tools answer which question,
 how to read the fields, and how to present the result without turning market data into advice. They
 live in `skills/<name>/SKILL.md` (Agent Skills format) and load automatically in Claude Code,
-Cursor, Grok Build and Gemini CLI. For the ChatGPT plugin portal, run `scripts/package-skills.sh`
-and upload the ZIPs from `dist/skills/`.
+Cursor, Grok Build, Gemini CLI, Kimi Code and GitHub Copilot CLI. For the ChatGPT plugin portal,
+run `scripts/package-skills.sh` and upload the ZIPs from `dist/skills/`.
 
 Any other Agent Skills client can install them with the [skills](https://skills.sh) CLI. The
 skills need the MCP server connected, as shown in [Quick start](#quick-start):
@@ -455,6 +571,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-10-09 | Plugins for Kimi Code (`.kimi-plugin/plugin.json`) and GitHub Copilot CLI (`.github/plugin/plugin.json`): both connect to the hosted server without a key (OAuth sign-in) and load the six skills. README setup for Kimi Code, OpenCode, GitHub Copilot CLI and goose (v1.10.0) |
 | 2026-10-08 | Claude plugin manifest carries a listing icon and the privacy policy URL; the archived launch article and its image left the repo (they live in git history); the condition cookbook's JSON examples are spaced so long ones wrap (v1.9.1) |
 | 2026-10-03 | `get_technical_indicators` takes `symbols` — up to three coins in one call, one quota unit, one entry per coin. `technical-analysis`, `market-screener` and `position-check` read several coins with it instead of one call per coin; registry entry 3.0.2 (v1.9.0) |
 | 2026-10-01 | Registry entry `app.traderspy/traderspy` 3.0.1 published without the key header (3.0.0 keeps it: registry versions are immutable); `server.json` here follows |
