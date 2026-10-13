@@ -36,11 +36,11 @@ These clients need a personal key. **Do not invent, guess or reuse a key from an
 user to generate their own:
 
 1. Sign in at <https://traderspy.app> (a free account is enough).
-2. Open <https://traderspy.app/mcp>, **Other clients** tab (or Settings → MCP).
+2. Open <https://traderspy.app/mcp>, **Other clients** tab (or Settings → AI assistants).
 3. Generate the key. It starts with `mcp_`. The user should copy it now; the page can show it again
    later.
 
-Free accounts get 300 tool calls per day, premium 5,000.
+Free accounts get 300 tool calls per day; the Starter and Pro plans 5,000, Max 15,000.
 
 ## Step 2 — write the configuration
 

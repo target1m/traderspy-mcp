@@ -455,7 +455,8 @@ on the very next call.
 | Plan | Daily calls | Data |
 | --- | --- | --- |
 | Free | 300 | Real-time, except top-trader position rows (15-minute delay) |
-| Premium | 5,000 | Real-time |
+| Starter, Pro | 5,000 | Real-time |
+| Max | 15,000 | Real-time |
 
 A three-coin, three-timeframe `get_technical_indicators` and a 100-symbol `screen_symbols` each cost **one** call,
 deliberately — the cheap way to use the connector is also the fast one.
@@ -489,7 +490,7 @@ call time is not enough, they must not appear in `tools/list`. Second, an MCP cr
 long-lived bearer token handed to a third-party host: everything it can reach is reachable by whoever
 holds it. So it reaches reads only.
 
-Trading belongs in the TraderSpy web app or mobile app, where you are present for it.
+Acting on what it finds stays with you, on your own exchange account, with you present.
 
 ---
 
@@ -517,7 +518,7 @@ Your AI client   Claude · Claude Code · ChatGPT · Grok · Cursor · Cline · 
 mcp.traderspy.app/mcp
        ├── 17 read-only tools       no order · no withdrawal · no account
        ├── 3 MCP Apps views         cards and charts where the host supports them
-       ├── per-user daily quota     300 free · 5,000 premium
+       ├── per-user daily quota     300 free · 5,000–15,000 on paid plans
        └── OAuth sign-in · personal key (header or URL)
        │
        ▼
@@ -571,6 +572,7 @@ TraderSpy platform
 
 | Date | Change |
 | --- | --- |
+| 2026-10-13 | Limits follow TraderSpy's plans: Free 300 tool calls a day, Starter and Pro 5,000, Max 15,000 (README, `llms-install.md`, the Cursor plugin's key prompt). The personal key lives under Settings → **AI assistants**. The Security section no longer points to the TraderSpy app for trading |
 | 2026-10-09 | Codex plugin manifest: `.codex-plugin/plugin.json` with its own keyless `mcp.json` (Codex signs in with OAuth) and the six skills; `SECURITY.md` says how to report a vulnerability (v1.11.0) |
 | 2026-10-09 | Plugins for Kimi Code (`.kimi-plugin/plugin.json`) and GitHub Copilot CLI (`.github/plugin/plugin.json`): both connect to the hosted server without a key (OAuth sign-in) and load the six skills. README setup for Kimi Code, OpenCode, GitHub Copilot CLI and goose (v1.10.0) |
 | 2026-10-08 | Claude plugin manifest carries a listing icon and the privacy policy URL; the archived launch article and its image left the repo (they live in git history); the condition cookbook's JSON examples are spaced so long ones wrap (v1.9.1) |

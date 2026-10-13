@@ -20,7 +20,7 @@
       "TRADERSPY_API_KEY": {
         "type": "string",
         "title": "TraderSpy API key",
-        "description": "Personal key from the Other clients tab at https://traderspy.app/mcp (or Settings → MCP). Starts with mcp_. A free account is enough: 300 tool calls per day, 5,000 on premium.",
+        "description": "Personal key from the Other clients tab at https://traderspy.app/mcp (or Settings → AI assistants). Starts with mcp_. A free account is enough: 300 tool calls per day, 5,000 or more on a paid plan.",
         "minLength": 5
       }
     },
